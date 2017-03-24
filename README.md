@@ -11,6 +11,18 @@ Summary: Tomographic reconstruction in Python.
 
 
 
+Current build status
+====================
+
+Linux: [![Circle CI](https://circleci.com/gh/conda-forge/tomopy-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/tomopy-feedstock)
+OSX: [![TravisCI](https://travis-ci.org/conda-forge/tomopy-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/tomopy-feedstock)
+Windows: ![](https://cdn.rawgit.com/conda-forge/conda-smithy/90845bba35bec53edac7a16638aa4d77217a3713/conda_smithy/static/disabled.svg)
+
+Current release info
+====================
+Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/tomopy/badges/version.svg)](https://anaconda.org/conda-forge/tomopy)
+Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/tomopy/badges/downloads.svg)](https://anaconda.org/conda-forge/tomopy)
+
 Installing tomopy
 =================
 
@@ -31,7 +43,6 @@ It is possible to list all of the versions of `tomopy` available on your platfor
 ```
 conda search tomopy --channel conda-forge
 ```
-
 
 
 About conda-forge
@@ -67,18 +78,6 @@ Terminology
 
 **conda-forge** - the place where the feedstock and smithy live and work to
                   produce the finished article (built conda distributions)
-
-Current build status
-====================
-
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/tomopy-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/tomopy-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/tomopy-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/tomopy-feedstock)
-Windows: ![](https://cdn.rawgit.com/conda-forge/conda-smithy/90845bba35bec53edac7a16638aa4d77217a3713/conda_smithy/static/disabled.svg)
-
-Current release info
-====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/tomopy/badges/version.svg)](https://anaconda.org/conda-forge/tomopy)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/tomopy/badges/downloads.svg)](https://anaconda.org/conda-forge/tomopy)
 
 
 Updating tomopy-feedstock
