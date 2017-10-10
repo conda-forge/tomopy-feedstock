@@ -1,4 +1,4 @@
-{% set version = "1.0.0" %}
+{% set version = "1.1.0" %}
 
 package:
     name: tomopy
@@ -7,7 +7,7 @@ package:
 source:
     url: https://github.com/tomopy/tomopy/archive/{{ version }}.tar.gz
     fn: tomopy-{{ version }}.tar.gz
-    sha256: b30a4828c9928aacb26f3cd1f44555aeeb031e9ed3585014b04a3b5079e78e24
+    sha256: b39854b714eb59a5a5ef301f85057554b624d436e707064dc25b09abdb7faa54
 
 build:
     number: 0
@@ -23,6 +23,8 @@ requirements:
 
     run:
         - dxchange
+        - futures # [py2k]
+        - numexpr
         - pyfftw
         - python
         - pywavelets
