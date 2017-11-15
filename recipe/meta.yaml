@@ -1,4 +1,4 @@
-{% set version = "1.1.0" %}
+{% set version = "1.1.2" %}
 
 package:
     name: tomopy
@@ -7,7 +7,7 @@ package:
 source:
     url: https://github.com/tomopy/tomopy/archive/{{ version }}.tar.gz
     fn: tomopy-{{ version }}.tar.gz
-    sha256: b39854b714eb59a5a5ef301f85057554b624d436e707064dc25b09abdb7faa54
+    sha256: 4a0990e5729e270729db21c219b238825e224a6cbe172ee17bf7a90d543f5a2f
 
 build:
     number: 0
@@ -16,8 +16,7 @@ build:
 
 requirements:
     build:
-        - fftw
-        - pyfftw
+        - mkl-devel
         - python
         - setuptools
 
@@ -25,7 +24,8 @@ requirements:
         - dxchange
         - futures # [py2k]
         - numexpr
-        - pyfftw
+        - mkl
+        - mkl_fft
         - python
         - pywavelets
         - numpy
@@ -47,7 +47,7 @@ app:
     own_environment: True
 
 about:
-    home: http://tomopy.readthedocs.org
+    home: http://tomopy.readthedocs.io
     license: BSD 3-Clause
     summary: Tomographic reconstruction in Python.
 
@@ -59,3 +59,4 @@ extra:
         - licode
         - ravescovi
         - tacaswell
+        - oleksandr-pavlyk
