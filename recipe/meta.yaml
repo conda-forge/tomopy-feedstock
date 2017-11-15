@@ -36,7 +36,6 @@ requirements:
 test:
     imports:
         - tomopy
-        - tomopy.io
         - tomopy.misc
         - tomopy.prep
         - tomopy.recon
