@@ -1,4 +1,4 @@
-{% set version = "1.1.2" %}
+{% set version = "1.2.1" %}
 
 package:
     name: tomopy
@@ -7,7 +7,7 @@ package:
 source:
     url: https://github.com/tomopy/tomopy/archive/{{ version }}.tar.gz
     fn: tomopy-{{ version }}.tar.gz
-    sha256: 4a0990e5729e270729db21c219b238825e224a6cbe172ee17bf7a90d543f5a2f
+    sha256: ee46b2f602bbdb6d0da8640e24e176bcfd8b86f9c47c136b884ab77932ae9d6e
 
 build:
   number: 0
