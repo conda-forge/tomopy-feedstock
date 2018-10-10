@@ -1,4 +1,4 @@
-{% set version = "1.1.2" %}
+{% set version = "1.2.1" %}
 
 package:
     name: tomopy
@@ -7,40 +7,53 @@ package:
 source:
     url: https://github.com/tomopy/tomopy/archive/{{ version }}.tar.gz
     fn: tomopy-{{ version }}.tar.gz
-    sha256: 4a0990e5729e270729db21c219b238825e224a6cbe172ee17bf7a90d543f5a2f
+    sha256: ee46b2f602bbdb6d0da8640e24e176bcfd8b86f9c47c136b884ab77932ae9d6e
 
 build:
-    number: 0
-    script: C_INCLUDE_PATH=$PREFIX/include python setup.py install --single-version-externally-managed --record=record.txt
-    skip: True  # [win]
+  number: 0
+  skip: true  # [win and py2k]
+  script:
+    - "{{ PYTHON }} build.py"
+    - "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
 requirements:
-    build:
-        - mkl-devel
-        - python
-        - setuptools
-
-    run:
-        - dxchange
-        - futures # [py2k]
-        - numexpr
-        - mkl
-        - mkl_fft
-        - python
-        - pywavelets
-        - numpy
-        - scikit-image
-        - scipy
-        - six
+  build:
+    - {{ compiler('c') }}  # [not win]
+    - mkl-devel  # [not win]
+  host:
+    - Make  # [win]
+    - MinGW  # [win]
+    - mkl-devel
+    - pip
+    - python={{ python }}
+    - setuptools
+  run:
+    - dxchange
+    - futures  # [py2k]
+    - numexpr
+    - mkl
+    - mkl_fft
+    - python={{ python }}
+    - pywavelets
+    - numpy
+    - scikit-image
+    - scipy
+    - six
 
 test:
-    imports:
-        - tomopy
-        - tomopy.misc
-        - tomopy.prep
-        - tomopy.recon
-        - tomopy.sim
-        - tomopy.util
+  requires:
+    - nose
+  imports:
+    - tomopy
+    - tomopy.misc
+    - tomopy.prep
+    - tomopy.recon
+    - tomopy.sim
+    - tomopy.util
+  source_files:
+    - test/*
+  commands:
+    - nosetests test
 
 app:
     own_environment: True
@@ -48,7 +61,9 @@ app:
 about:
     home: http://tomopy.readthedocs.io
     license: BSD 3-Clause
-    summary: Tomographic reconstruction in Python.
+    license_family: BSD
+    license_file: LICENSE.txt
+    summary: 'Tomographic reconstruction in Python.'
 
 extra:
     recipe-maintainers:
