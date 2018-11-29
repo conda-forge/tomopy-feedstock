@@ -22,6 +22,7 @@ requirements:
     - Make  # [win]
     - MinGW  # [win]
     - mkl-devel
+  host:
     - pip
     - python={{ python }}
     - setuptools
