@@ -25,7 +25,7 @@ requirements:
     - python={{ python }}  # [win]
   host:
     - pip
-    - python={{ python }}  # [not win]
+    - python={{ python }}
     - setuptools
   run:
     - dxchange
