@@ -21,10 +21,11 @@ requirements:
     - {{ compiler('c') }}  # [not win]
     - Make  # [win]
     - MinGW  # [win]
-    - mkl-devel
+    - mkl-devel  # Must not be in host to prevent dependency conflict
+    - python={{ python }}  # [win]
   host:
     - pip
-    - python={{ python }}
+    - python={{ python }}  # [not win]
     - setuptools
   run:
     - dxchange
