@@ -10,7 +10,7 @@ source:
     sha256: ee46b2f602bbdb6d0da8640e24e176bcfd8b86f9c47c136b884ab77932ae9d6e
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win and py2k]
   script:
     - "{{ PYTHON }} build.py"
@@ -19,11 +19,11 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}  # [not win]
-    - mkl-devel  # [not win]
-  host:
     - Make  # [win]
     - MinGW  # [win]
-    - mkl-devel
+    - mkl-devel  # Must not be in host to prevent dependency conflict
+    - python={{ python }}  # [win]
+  host:
     - pip
     - python={{ python }}
     - setuptools
@@ -34,7 +34,6 @@ requirements:
     - mkl
     - mkl_fft
     - python={{ python }}
-    - pywavelets
     - numpy
     - scikit-image
     - scipy
