@@ -7,7 +7,7 @@ package:
 source:
     url: https://github.com/tomopy/tomopy/archive/{{ version }}.tar.gz
     fn: tomopy-{{ version }}.tar.gz
-    sha256: d4697f545ff7fa9e76306e72a6b452e0de9840a49a72fe2a4ec65e79c7c90e09
+    sha256: 6e06dd47470e5d8450f9554e8099511daf19b9a4ccd6021e3d1a8b8f05d747f6
 
 build:
   number: 0
