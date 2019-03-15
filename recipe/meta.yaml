@@ -65,6 +65,11 @@ about:
     license_family: BSD
     license_file: LICENSE.txt
     summary: 'Tomographic reconstruction in Python.'
+    description: |
+      TomoPy is an open-source Python package for tomographic data processing
+      and image reconstruction.
+    doc_url: http://tomopy.readthedocs.io
+    dev_url: https://github.com/tomopy/tomopy
 
 extra:
     recipe-maintainers:
