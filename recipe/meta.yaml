@@ -30,6 +30,7 @@ requirements:
   run:
     - dxchange
     - futures  # [py2k]
+    - m2w64-gcc-libs-core  # [win]
     - mkl
     - mkl_fft
     - numexpr
