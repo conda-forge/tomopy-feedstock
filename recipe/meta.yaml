@@ -10,7 +10,7 @@ source:
     sha256: ee46b2f602bbdb6d0da8640e24e176bcfd8b86f9c47c136b884ab77932ae9d6e
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win and py2k]
   script:
     - "{{ PYTHON }} build.py"
@@ -21,9 +21,10 @@ requirements:
     - {{ compiler('c') }}  # [not win]
     - Make  # [win]
     - MinGW  # [win]
-    - mkl-devel  # Must not be in host to prevent dependency conflict
     - python={{ python }}  # [win]
   host:
+    - libblas
+    - libcblas
     - pip
     - python={{ python }}
     - setuptools
@@ -31,8 +32,6 @@ requirements:
     - dxchange
     - futures  # [py2k]
     - numexpr
-    - mkl
-    - mkl_fft
     - python={{ python }}
     - numpy
     - scikit-image
