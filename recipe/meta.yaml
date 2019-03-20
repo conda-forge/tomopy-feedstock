@@ -14,7 +14,7 @@ build:
   skip: true  # [win and py2k]
   script:
     - set CC=gcc  # [win]
-    - mkdir %BUILD_PREFIX%/include  # [win]
+    - mkdir %BUILD_PREFIX%\include  # [win]
     - mkdir -p $BUILD_PREFIX/include  # [unix]
     - "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   ignore_run_exports:
