@@ -1,4 +1,4 @@
-{% set version = "1.2.1" %}
+{% set version = "1.4.1" %}
 
 package:
     name: tomopy
@@ -7,37 +7,43 @@ package:
 source:
     url: https://github.com/tomopy/tomopy/archive/{{ version }}.tar.gz
     fn: tomopy-{{ version }}.tar.gz
-    sha256: ee46b2f602bbdb6d0da8640e24e176bcfd8b86f9c47c136b884ab77932ae9d6e
+    sha256: e98cc5e9b075d5001a6bbdd42017180bd276a0f020800270dea936ae5422edd1
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win and py2k]
+  merge_build_host: True  # [win]
   script:
-    - "{{ PYTHON }} build.py"
+    - set CC=gcc  # [win]
+    - mkdir %BUILD_PREFIX%\include  # [win]
+    - mkdir -p $BUILD_PREFIX/include  # [unix]
     - "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  ignore_run_exports:
+    - blas
 
 requirements:
   build:
     - {{ compiler('c') }}  # [not win]
-    - Make  # [win]
-    - MinGW  # [win]
-    - mkl-devel  # Must not be in host to prevent dependency conflict
-    - python={{ python }}  # [win]
+    - {{ compiler('m2w64_c') }}  # [win]
+    - make  # [win]
   host:
     - pip
-    - python={{ python }}
+    - python
+    - mkl-devel
     - setuptools
   run:
     - dxchange
     - futures  # [py2k]
-    - numexpr
     - mkl
     - mkl_fft
-    - python={{ python }}
+    - numexpr
     - numpy
+    - pywavelets
+    - python
     - scikit-image
     - scipy
     - six
+    - tifffile
 
 test:
   requires:
@@ -63,6 +69,11 @@ about:
     license_family: BSD
     license_file: LICENSE.txt
     summary: 'Tomographic reconstruction in Python.'
+    description: |
+      TomoPy is an open-source Python package for tomographic data processing
+      and image reconstruction.
+    doc_url: http://tomopy.readthedocs.io
+    dev_url: https://github.com/tomopy/tomopy
 
 extra:
     recipe-maintainers:
@@ -72,3 +83,4 @@ extra:
         - ravescovi
         - tacaswell
         - oleksandr-pavlyk
+        - carterbox
