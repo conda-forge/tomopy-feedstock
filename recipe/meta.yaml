@@ -12,6 +12,7 @@ source:
 build:
   number: 0
   skip: true  # [win and py2k]
+  merge_build_host: True  # [win]
   script:
     - set CC=gcc  # [win]
     - mkdir %BUILD_PREFIX%\include  # [win]
