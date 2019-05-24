@@ -15,7 +15,7 @@ build:
   skip: true  # [win and py2k]
   merge_build_host: True  # [win]
   script:
-    - set CC=gcc  # [win]
+    # - set CC=gcc  # [win]
     # - mkdir %BUILD_PREFIX%\include  # [win]
     # - mkdir -p $BUILD_PREFIX/include  # [unix]
     - "{{ PYTHON }} -m pip install .
@@ -25,10 +25,10 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}  # [not win]
+    - {{ compiler('cxx') }}
     - git
-    - {{ compiler('m2w64_c') }}  # [win]
-    - make  # [win]
+    # - {{ compiler('m2w64_c') }}  # [win]
+    # - make  # [win]
   host:
     - pip
     - python
