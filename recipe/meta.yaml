@@ -14,9 +14,6 @@ build:
   skip: true  # [win and py2k]
   merge_build_host: True  # [win]
   script:
-    # - set CC=gcc  # [win]
-    # - mkdir %BUILD_PREFIX%\include  # [win]
-    # - mkdir -p $BUILD_PREFIX/include  # [unix]
     - "{{ PYTHON }} -m pip install .
       --no-deps --ignore-installed --no-cache-dir -vvv"
   ignore_run_exports:
@@ -26,14 +23,11 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - git
-    # - {{ compiler('m2w64_c') }}  # [win]
-    # - make  # [win]
   host:
     - pip
     - python
     - libopencv
     - mkl-devel
-    - openmp
     - scikit-build
     - setuptools
     - setuptools_scm
