@@ -5,7 +5,6 @@ package:
     version: {{ version }}
 
 source:
-source:
   # Switched to git checkout because of PTL submodule
   git_url: https://github.com/tomopy/tomopy.git
   git_rev: {{ version }}
