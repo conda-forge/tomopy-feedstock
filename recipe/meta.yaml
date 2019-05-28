@@ -14,8 +14,7 @@ build:
   skip: true  # [win and py2k]
   merge_build_host: True  # [win]
   script:
-    - "{{ PYTHON }} -m pip install .
-      --no-deps --ignore-installed --no-cache-dir -vvv"
+    - {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --install-option="-GNinja"
   ignore_run_exports:
     - blas
 
