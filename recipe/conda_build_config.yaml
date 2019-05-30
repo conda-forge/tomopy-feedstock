@@ -1,0 +1,7 @@
+cuda:
+  - nogpu
+  - 7.5  # [linux]
+  - 8.0  # [linux]
+  - 9.0  # [linux]
+  - 9.2  # [linux]
+  - 10.0  # [linux]
