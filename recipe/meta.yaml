@@ -8,6 +8,7 @@
 {% else %}
 {% set cuda_build_prefix = "" %}
 {% set cuda_install_option = "--disable-cuda" %}
+{% set build = build + 100 %}
 {% endif %}
 
 package:
