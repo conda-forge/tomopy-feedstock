@@ -10,9 +10,10 @@ jobs:
   strategy:
     maxParallel: 8
     matrix:
-      linux_python2.7:
-        CONFIG: linux_python2.7
+      linux_cuda10.0python2.7:
+        CONFIG: linux_cuda10.0python2.7
         UPLOAD_PACKAGES: True
+<<<<<<< HEAD
         DOCKER_IMAGE: condaforge/linux-anvil-comp7
       linux_python3.6:
         CONFIG: linux_python3.6
@@ -20,6 +21,31 @@ jobs:
         DOCKER_IMAGE: condaforge/linux-anvil-comp7
       linux_python3.7:
         CONFIG: linux_python3.7
+=======
+      linux_cuda10.0python3.6:
+        CONFIG: linux_cuda10.0python3.6
+        UPLOAD_PACKAGES: True
+      linux_cuda10.0python3.7:
+        CONFIG: linux_cuda10.0python3.7
+        UPLOAD_PACKAGES: True
+      linux_cuda9.2python2.7:
+        CONFIG: linux_cuda9.2python2.7
+        UPLOAD_PACKAGES: True
+      linux_cuda9.2python3.6:
+        CONFIG: linux_cuda9.2python3.6
+        UPLOAD_PACKAGES: True
+      linux_cuda9.2python3.7:
+        CONFIG: linux_cuda9.2python3.7
+        UPLOAD_PACKAGES: True
+      linux_cudanogpupython2.7:
+        CONFIG: linux_cudanogpupython2.7
+        UPLOAD_PACKAGES: True
+      linux_cudanogpupython3.6:
+        CONFIG: linux_cudanogpupython3.6
+        UPLOAD_PACKAGES: True
+      linux_cudanogpupython3.7:
+        CONFIG: linux_cudanogpupython3.7
+>>>>>>> MNT: Re-rendered with conda-build 3.18.2, conda-smithy 3.3.4, and conda-forge-pinning 2019.05.31
         UPLOAD_PACKAGES: True
         DOCKER_IMAGE: condaforge/linux-anvil-comp7
   steps:
