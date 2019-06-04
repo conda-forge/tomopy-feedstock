@@ -24,7 +24,7 @@ source:
 build:
   number: {{ build }}
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
-  skip: true  # [win and py2k]
+  skip: true  # [py2k]
   merge_build_host: True  # [win]
   script:
     - export CUDA_TOOLKIT_ROOT_DIR=$BUILD_PREFIX/cuda-{{ cuda }}
@@ -44,6 +44,7 @@ requirements:
   host:
     - cudatoolkit {{ cuda }}  # [cuda != 'nogpu']
     - conda  # Only used to download cudatoolkit
+    - perl  # [cuda != 'nogpu'] # only used by cudatoolkit
     - pip
     - python
     - libopencv  # [win]

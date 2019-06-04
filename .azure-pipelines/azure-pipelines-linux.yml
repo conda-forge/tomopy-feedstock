@@ -10,6 +10,7 @@ jobs:
   strategy:
     maxParallel: 8
     matrix:
+<<<<<<< HEAD
       linux_cuda10.0python2.7:
         CONFIG: linux_cuda10.0python2.7
         UPLOAD_PACKAGES: True
@@ -22,23 +23,19 @@ jobs:
       linux_python3.7:
         CONFIG: linux_python3.7
 =======
+=======
+>>>>>>> BLD: Remove py 2.7 build and add missing perl dependency
       linux_cuda10.0python3.6:
         CONFIG: linux_cuda10.0python3.6
         UPLOAD_PACKAGES: True
       linux_cuda10.0python3.7:
         CONFIG: linux_cuda10.0python3.7
         UPLOAD_PACKAGES: True
-      linux_cuda9.2python2.7:
-        CONFIG: linux_cuda9.2python2.7
-        UPLOAD_PACKAGES: True
       linux_cuda9.2python3.6:
         CONFIG: linux_cuda9.2python3.6
         UPLOAD_PACKAGES: True
       linux_cuda9.2python3.7:
         CONFIG: linux_cuda9.2python3.7
-        UPLOAD_PACKAGES: True
-      linux_cudanogpupython2.7:
-        CONFIG: linux_cudanogpupython2.7
         UPLOAD_PACKAGES: True
       linux_cudanogpupython3.6:
         CONFIG: linux_cudanogpupython3.6

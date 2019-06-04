@@ -1,7 +1,7 @@
 cuda:
   - nogpu
-  # - 7.5  # [linux and py3k]
-  # - 8.0  # [linux and py3k]
-  - 9.2  # [linux and py3k]
-  - 10.0  # [linux and py3k]
-  # - 10.1  # [linux and py3k]
+  # - 7.5  # [linux]
+  # - 8.0  # [linux]
+  - 9.2  # [linux]
+  - 10.0  # [linux]
+  # - 10.1  # [linux]
