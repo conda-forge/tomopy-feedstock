@@ -64,7 +64,6 @@ def install_cudatoolkit(version):
         "10.0": [
             "--silent", "--toolkit", "--no-opengl-libs", "--no-man-page",
             "--no-drm", "--toolkitpath=" + CUDA_TOOLKIT_ROOT_DIR,
-            "--defaultroot=" + CUDA_TOOLKIT_ROOT_DIR,
         ],
         "10.1": [
             "--silent", "--toolkit", "--no-opengl-libs", "--no-man-page",
@@ -72,8 +71,8 @@ def install_cudatoolkit(version):
             "--defaultroot=" + CUDA_TOOLKIT_ROOT_DIR,
         ],
     }
-    print(" ".join([cuda_installer] + parameters[version]))
-    subprocess.run([cuda_installer] + parameters[version])
+    print(" ".join(["./" + cuda_installer] + parameters[version]))
+    subprocess.run(["./" + cuda_installer] + parameters[version], check=True)
     # with open("install_cuda.sh", "w") as f:
     #     f.write(" ".join([cuda_installer] + parameters[version]))
     # os.chmod("install_cuda.sh", stat.S_IXUSR | stat.S_IRUSR | stat.S_IWUSR)
