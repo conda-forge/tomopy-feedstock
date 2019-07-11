@@ -10,7 +10,7 @@ source:
   git_rev: {{ version }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win and py2k]
   merge_build_host: True  # [win]
   script:
@@ -25,7 +25,8 @@ requirements:
   host:
     - pip
     - python
-    - libopencv
+    - libopencv  # [win]
+    - opencv  # [not win]
     - mkl-devel
     - scikit-build
     - setuptools
@@ -37,7 +38,8 @@ requirements:
     - mkl_fft
     - numexpr
     - numpy
-    - libopencv
+    - libopencv  # [win]
+    - opencv  # [not win]
     - pywavelets
     - python
     - scikit-image
