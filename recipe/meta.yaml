@@ -37,7 +37,7 @@ requirements:
     - mkl
     - mkl_fft
     - numexpr
-    - numpy
+    - numpy >1.12
     - {{ pin_compatible('libopencv') }}  # [win]
     - {{ pin_compatible('opencv') }}  # [not win]
     - pywavelets
