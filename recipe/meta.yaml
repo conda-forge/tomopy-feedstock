@@ -1,4 +1,4 @@
-{% set version = "1.5.2" %}
+{% set version = "1.6.0" %}
 
 package:
     name: tomopy
@@ -10,7 +10,7 @@ source:
   git_rev: {{ version }}
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win and py2k]
   merge_build_host: True  # [win]
   script:
@@ -43,7 +43,7 @@ requirements:
     - pywavelets
     - python
     - scikit-image
-    - scipy<1.3
+    - scipy
     - six
     - tifffile
 
@@ -72,8 +72,8 @@ about:
     license_file: LICENSE.txt
     summary: 'Tomographic reconstruction in Python.'
     description: |
-      TomoPy is an open-source Python package for tomographic data processing
-      and image reconstruction.
+      TomoPy is an open-source Python package for tomographic data
+      processing and image reconstruction.
     doc_url: http://tomopy.readthedocs.io
     dev_url: https://github.com/tomopy/tomopy
 
