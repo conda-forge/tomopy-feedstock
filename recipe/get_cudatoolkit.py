@@ -61,6 +61,7 @@ def install_cudatoolkit(version):
         "9.0": [
             "--silent", "--toolkit", "--no-opengl-libs",
             "--no-drm", "--toolkitpath=" + CUDA_TOOLKIT_ROOT_DIR,
+            "--override",  # ignore that compiler compatability is gcc 4.8
         ],
         "9.2": [
             "--silent", "--toolkit", "--no-opengl-libs", "--no-man-page",
