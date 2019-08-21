@@ -35,7 +35,8 @@ def install_cudatoolkit(version):
     if "CUDA_TOOLKIT_ROOT_DIR" in os.environ:
         CUDA_TOOLKIT_ROOT_DIR = os.environ["CUDA_TOOLKIT_ROOT_DIR"]
     else:
-        CUDA_TOOLKIT_ROOT_DIR = os.path.join(os.environ["HOME"], "cuda-" + version)
+        CUDA_TOOLKIT_ROOT_DIR = os.path.join(os.environ["HOME"],
+                                             "cuda-" + version)
 
     print("Link the conda compilers to a place that CUDA will find them.")
     print(os.environ["CC"] +
