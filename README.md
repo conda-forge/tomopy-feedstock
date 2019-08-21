@@ -52,6 +52,34 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>linux_cuda10.1python3.6</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_cuda10.1python3.6" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_cuda10.1python3.7</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_cuda10.1python3.7" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_cuda9.0python3.6</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_cuda9.0python3.6" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_cuda9.0python3.7</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_cuda9.0python3.7" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>linux_cuda9.2python3.6</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
