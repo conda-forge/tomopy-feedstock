@@ -44,7 +44,6 @@ requirements:
   host:
     - cudatoolkit {{ cuda }}  # [cuda != 'nogpu']
     - conda  # Only used to download cudatoolkit
-    - perl  # [cuda != 'nogpu'] # only used by cudatoolkit
     - pip
     - python
     - libopencv  # [win]
