@@ -11,7 +11,7 @@ import conda.exports
 
 # URLs for the cuda installer
 urls = {
-    "8.0": "https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_375.26_linux-run",
+    "9.0": "https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run",
     "9.2": "https://developer.nvidia.com/compute/cuda/9.2/Prod2/local_installers/cuda_9.2.148_396.37_linux",
     "10.0": "https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda_10.0.130_410.48_linux",
     "10.1": "https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.168_418.67_linux.run",
@@ -57,6 +57,10 @@ def install_cudatoolkit(version):
 
     # Set parameters for the cuda installer
     parameters = {
+        "9.0": [
+            "--silent", "--toolkit", "--no-opengl-libs", "--no-man-page",
+            "--no-drm", "--toolkitpath=" + CUDA_TOOLKIT_ROOT_DIR,
+        ],
         "9.2": [
             "--silent", "--toolkit", "--no-opengl-libs", "--no-man-page",
             "--no-drm", "--toolkitpath=" + CUDA_TOOLKIT_ROOT_DIR,
