@@ -81,6 +81,8 @@ test:
   source_files:
     - test/*
   commands:
+    # Add the cudatoolkit to the library path
+    - export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"  # [cuda != 'nogpu']
     - nosetests test
 
 app:
