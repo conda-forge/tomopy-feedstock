@@ -36,6 +36,7 @@ build:
       --install-option="{{ cuda_install_option }}"
   ignore_run_exports:
     - blas
+    - numpy
 
 requirements:
   build:
