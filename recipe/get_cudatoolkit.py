@@ -59,7 +59,7 @@ def install_cudatoolkit(version):
     # Set parameters for the cuda installer
     parameters = {
         "9.0": [
-            "--silent", "--toolkit", "--no-opengl-libs", "--no-man-page",
+            "--silent", "--toolkit", "--no-opengl-libs",
             "--no-drm", "--toolkitpath=" + CUDA_TOOLKIT_ROOT_DIR,
         ],
         "9.2": [
