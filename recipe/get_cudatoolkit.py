@@ -3,11 +3,15 @@
 """Download and run the cudatoolkit installer for Linux."""
 
 import argparse
+import logging
 import os
 import stat
 import subprocess
 
 import conda.exports
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 # URLs for the cuda installer
 urls = {
@@ -25,23 +29,50 @@ def install_cudatoolkit(version):
             "The URL for cuda version {} is missing".format(version)
         )
 
-    print("Download the CUDA toolkit installer and fix permissions.")
+    logger.info("Download the CUDA toolkit installer and fix permissions.")
     cuda_installer = "cuda_" + version + "_installer.run"
     if not os.path.exists(cuda_installer):
         conda.exports.download(urls[version], cuda_installer)
     os.chmod(cuda_installer, stat.S_IXUSR | stat.S_IRUSR)
 
+    if "BUILD_PREFIX" in os.environ:
+        BUILD_PREFIX = os.environ["BUILD_PREFIX"]
+    else:
+        BUILD_PREFIX = os.environ["CONDA_PREFIX"]
+
     # Grab the toolkit install location from the environment
     if "CUDA_TOOLKIT_ROOT_DIR" in os.environ:
         CUDA_TOOLKIT_ROOT_DIR = os.environ["CUDA_TOOLKIT_ROOT_DIR"]
     else:
-        CUDA_TOOLKIT_ROOT_DIR = os.path.join(os.environ["HOME"],
+        CUDA_TOOLKIT_ROOT_DIR = os.path.join(BUILD_PREFIX,
                                              "cuda-" + version)
 
-    print("Link the conda compilers to a place that CUDA will find them.")
-    print(os.environ["CC"] +
-          " links to " +
-          os.path.join(CUDA_TOOLKIT_ROOT_DIR, "bin", "gcc"))
+    logger.info("Update PATH to include CUDA binary directory.")
+    os.environ["PATH"] = ":".join((os.path.join(CUDA_TOOLKIT_ROOT_DIR, "bin"),
+                                  os.environ["PATH"]))
+    logger.debug(os.environ["PATH"])
+
+    # logger.info("Put the conda compiler libraries on the LD_LIBRARY_PATH.")
+    # LD_LIBRARY_PATH = ":".join((
+    #     os.path.join(BUILD_PREFIX, "x86_64-conda_cos6-linux-gnu", "lib"),
+    #     os.path.join(BUILD_PREFIX, "x86_64-conda_cos6-linux-gnu", "sysroot",
+    #                  "lib"),
+    #     os.environ["LD_LIBRARY_PATH"],
+    # ))
+    # if "LD_LIBRARY_PATH" in os.environ:
+    #     os.environ["LD_LIBRARY_PATH"] = ":".join((
+    #         LD_LIBRARY_PATH,
+    #         os.environ["LD_LIBRARY_PATH"],
+    #     ))
+    # else:
+    #     os.environ["LD_LIBRARY_PATH"] = LD_LIBRARY_PATH
+    # logger.debug(os.environ["LD_LIBRARY_PATH"])
+
+    logger.info("Link the conda compilers to a place" +
+                " that CUDA will find them.")
+    logger.debug("\n" + os.environ["CC"] +
+                 "\nlinks to\n" +
+                 os.path.join(CUDA_TOOLKIT_ROOT_DIR, "bin", "gcc"))
     os.makedirs(os.path.join(CUDA_TOOLKIT_ROOT_DIR, "bin"), exist_ok=True)
     try:
         os.symlink(
@@ -75,6 +106,7 @@ def install_cudatoolkit(version):
             "--silent", "--toolkit", "--no-opengl-libs", "--no-man-page",
             "--no-drm", "--toolkitpath=" + CUDA_TOOLKIT_ROOT_DIR,
             "--defaultroot=" + CUDA_TOOLKIT_ROOT_DIR,
+            "--override",  # ignore library incompatibilities
         ],
     }
     print(" ".join(["./" + cuda_installer] + parameters[version]))
