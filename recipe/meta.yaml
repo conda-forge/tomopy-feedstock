@@ -37,6 +37,7 @@ build:
   ignore_run_exports:
     - blas
     - numpy
+    - python
 
 requirements:
   build:
