@@ -1,38 +1,60 @@
-{% set version = "1.6.0" %}
+{% set version = "1.7.0" %}
+{% set build = 0 %}
+
+# Set CUDA related variables
+{% if cuda != "nogpu" %}
+{% set cuda_build_prefix = "cuda" + cuda|string %}
+{% set cuda_install_option = "--enable-cuda" %}
+{% else %}
+{% set cuda_build_prefix = "" %}
+{% set cuda_install_option = "--disable-cuda" %}
+{% set build = build + 100 %}
+{% endif %}
 
 package:
     name: tomopy
     version: {{ version }}
 
 source:
-  # Switched to git checkout because of PTL submodule
-  git_url: https://github.com/tomopy/tomopy.git
-  git_rev: {{ version }}
+  # git checkout because PTL submodule is not included in GitHub tarball
+  - git_url: https://github.com/tomopy/tomopy.git
+    git_rev: {{ version }}
+  - path: get_cudatoolkit.py
 
 build:
-  number: 0
-  skip: true  # [win and py2k]
+  number: {{ build }}
+  string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
+  skip: true  # [py2k]
   merge_build_host: True  # [win]
   script:
-    - {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv --install-option="-GNinja"
+    - export CUDA_TOOLKIT_ROOT_DIR=$BUILD_PREFIX/cuda-{{ cuda }}
+    - export PATH=$CUDA_TOOLKIT_ROOT_DIR/bin:$PATH
+    - {{ PYTHON }} get_cudatoolkit.py {{ cuda }}  # [cuda != 'nogpu']
+    - {{ PYTHON }} -m pip install .
+      --no-deps --ignore-installed --no-index --no-cache-dir -vv
+      --install-option="-GNinja"
+      --install-option="{{ cuda_install_option }}"
   ignore_run_exports:
     - blas
+    - numpy
+    - python
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - git
   host:
+    - cudatoolkit {{ cuda }}  # [cuda != 'nogpu']
+    - conda  # Only used to download cudatoolkit
     - pip
     - python
     - libopencv  # [win]
     - opencv  # [not win]
     - mkl-devel
     - scikit-build
-    - setuptools
-    - setuptools_scm
     - setuptools_scm_git_archive
   run:
+    - {{ pin_compatible('cudatoolkit', min_pin='x.x', max_pin='x.x') }}  # [cuda != 'nogpu']
     - futures  # [py2k]
     - mkl
     - mkl_fft
@@ -60,6 +82,8 @@ test:
   source_files:
     - test/*
   commands:
+    # Add the cudatoolkit to the library path
+    - export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"  # [cuda != 'nogpu']
     - nosetests test
 
 app:

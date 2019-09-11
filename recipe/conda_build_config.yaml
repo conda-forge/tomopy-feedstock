@@ -1,0 +1,7 @@
+cuda:
+  - nogpu
+  - 9.0   # [linux]
+  - 9.2   # [linux]
+  - 10.0  # [linux]
+  # - 10.1  # [linux]
+  # libc and libcstdc++ need to be updated on Docker image for 10.1
