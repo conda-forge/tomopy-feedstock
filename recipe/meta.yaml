@@ -2,8 +2,8 @@
 {% set build = 1 %}
 
 # Set CUDA related variables
-{% if cuda != "nogpu" %}
-{% set cuda_build_prefix = "cuda" + cuda|string %}
+{% if linux64 and cuda_compiler_version != "None" %}
+{% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
 {% set cuda_install_option = "--enable-cuda" %}
 {% else %}
 {% set cuda_build_prefix = "" %}
@@ -19,7 +19,6 @@ source:
   # git checkout because PTL submodule is not included in GitHub tarball
   - git_url: https://github.com/tomopy/tomopy.git
     git_rev: {{ version }}
-  - path: get_cudatoolkit.py
 
 build:
   number: {{ build }}
@@ -27,9 +26,8 @@ build:
   skip: true  # [py2k]
   merge_build_host: True  # [win]
   script:
-    - export CUDA_TOOLKIT_ROOT_DIR=$BUILD_PREFIX/cuda-{{ cuda }}
-    - export PATH=$CUDA_TOOLKIT_ROOT_DIR/bin:$PATH
-    - {{ PYTHON }} get_cudatoolkit.py {{ cuda }}  # [cuda != 'nogpu']
+#     - export CUDA_TOOLKIT_ROOT_DIR="${CUDA_HOME}"
+    - ln -s ${CUDA_HOME}/include/* ${CONDA_PREFIX}/include/
     - {{ PYTHON }} -m pip install .
       --no-deps --ignore-installed --no-index --no-cache-dir -vv
       --install-option="-GNinja"
@@ -38,14 +36,15 @@ build:
     - blas
     - numpy
     - python
+  missing_dso_whitelist:
+    - "*/libcuda.*"
 
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
     - git
   host:
-    - cudatoolkit {{ cuda }}  # [cuda != 'nogpu']
-    - conda  # Only used to download cudatoolkit
     - pip
     - python
     - libopencv
@@ -53,7 +52,6 @@ requirements:
     - scikit-build
     - setuptools_scm_git_archive
   run:
-    - {{ pin_compatible('cudatoolkit', min_pin='x.x', max_pin='x.x') }}  # [cuda != 'nogpu']
     - futures  # [py2k]
     - mkl
     - mkl_fft
@@ -80,8 +78,6 @@ test:
   source_files:
     - test/*
   commands:
-    # Add the cudatoolkit to the library path
-    - export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"  # [cuda != 'nogpu']
     - nosetests test
 
 app:

@@ -2,8 +2,10 @@ channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
-cuda:
-- '9.2'
+cuda_compiler:
+- nvcc
+cuda_compiler_version:
+- None
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -17,4 +19,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- '3.7'
+- '3.6'
+zip_keys:
+- - cuda_compiler_version
+  - docker_image
