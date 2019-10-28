@@ -1,5 +1,5 @@
 {% set version = "1.7.0" %}
-{% set build = 0 %}
+{% set build = 1 %}
 
 # Set CUDA related variables
 {% if cuda != "nogpu" %}
@@ -60,8 +60,8 @@ requirements:
     - mkl_fft
     - numexpr
     - numpy >1.12
-    - {{ pin_compatible('libopencv') }}  # [win]
-    - {{ pin_compatible('opencv') }}  # [not win]
+    - {{ pin_compatible('libopencv', min_pin='x.x', max_pin='x.x') }}  # [win]
+    - {{ pin_compatible('opencv', min_pin='x.x', max_pin='x.x') }}  # [not win]
     - pywavelets
     - python
     - scikit-image
