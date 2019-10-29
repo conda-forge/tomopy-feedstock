@@ -48,8 +48,7 @@ requirements:
     - conda  # Only used to download cudatoolkit
     - pip
     - python
-    - libopencv  # [win]
-    - opencv  # [not win]
+    - libopencv
     - mkl-devel
     - scikit-build
     - setuptools_scm_git_archive
@@ -60,8 +59,7 @@ requirements:
     - mkl_fft
     - numexpr
     - numpy >1.12
-    - {{ pin_compatible('libopencv', min_pin='x.x', max_pin='x.x') }}  # [win]
-    - {{ pin_compatible('opencv', min_pin='x.x', max_pin='x.x') }}  # [not win]
+    - {{ pin_compatible('libopencv', min_pin='x.x', max_pin='x.x') }}
     - pywavelets
     - python
     - scikit-image
