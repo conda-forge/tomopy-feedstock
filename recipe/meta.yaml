@@ -64,6 +64,8 @@ requirements:
     - scipy
     - six
     - tifffile
+  run_constrained:
+    - astra-toolbox >1.8
 
 test:
   requires:
