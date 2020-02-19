@@ -23,7 +23,7 @@ source:
 build:
   number: {{ build }}
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
-  skip: true  # [py2k or (win and py38)]
+  skip: true  # [py2k or (win and py==38)]
   merge_build_host: True  # [win]
   script:
 #     - export CUDA_TOOLKIT_ROOT_DIR="${CUDA_HOME}"
