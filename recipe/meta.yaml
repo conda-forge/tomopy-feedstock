@@ -80,6 +80,7 @@ test:
   source_files:
     - test/*
   commands:
+    - unset CUDA_VERISON
     - nosetests test
 
 app:
