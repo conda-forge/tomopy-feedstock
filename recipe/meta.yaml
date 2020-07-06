@@ -80,8 +80,8 @@ test:
   source_files:
     - test/*
   commands:
-    - unset CUDA_VERISON
-    - nosetests test
+    - unset CUDA_VERSION
+    - nosetests test -vs
 
 app:
     own_environment: True
