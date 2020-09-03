@@ -70,7 +70,7 @@ requirements:
 
 test:
   requires:
-    - nose
+    - pytest
   imports:
     - tomopy
     - tomopy.misc
@@ -82,7 +82,7 @@ test:
     - test/*
   commands:
     - unset CUDA_VERSION
-    - nosetests test -vs
+    - pytest test -vs
 
 app:
     own_environment: True
