@@ -1,4 +1,4 @@
-{% set version = "1.7.2" %}
+{% set version = "1.8.0" %}
 {% set build = 0 %}
 
 # Set CUDA related variables
@@ -48,7 +48,6 @@ requirements:
   host:
     - pip
     - python
-    - libopencv
     - mkl-devel
     - scikit-build
     - setuptools_scm_git_archive
@@ -58,7 +57,6 @@ requirements:
     - mkl_fft
     - numexpr
     - numpy >1.12
-    - {{ pin_compatible('libopencv', min_pin='x.x', max_pin='x.x') }}
     - pywavelets
     - python
     - scikit-image
