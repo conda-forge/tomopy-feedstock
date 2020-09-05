@@ -4,10 +4,10 @@
 # Set CUDA related variables
 {% if linux64 and cuda_compiler_version != "None" %}
 {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
-{% set cuda_install_option = "--enable-cuda" %}
+{% set cuda_flag = "enable" %}
 {% else %}
 {% set cuda_build_prefix = "" %}
-{% set cuda_install_option = "--disable-cuda" %}
+{% set cuda_flag = "disable" %}
 {% set build = build + 100 %}
 {% endif %}
 
@@ -23,15 +23,14 @@ source:
 build:
   number: {{ build }}
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
-  skip: true  # [py2k or (win and py==38)]
+  skip: true  # [py2k]
   merge_build_host: True  # [win]
   script:
-#     - export CUDA_TOOLKIT_ROOT_DIR="${CUDA_HOME}"
-    - ln -s ${CUDA_HOME}/include/* ${CONDA_PREFIX}/include/
-    - {{ PYTHON }} -m pip install .
-      --no-deps --ignore-installed --no-index --no-cache-dir -vv
-      --install-option="-GNinja"
-      --install-option="{{ cuda_install_option }}"
+    {{ PYTHON }} -m pip install .
+    --no-deps --ignore-installed --no-index --no-cache-dir -vv
+    --install-option="-GNinja"
+    --install-option="--{{ cuda_flag }}-cuda"
+    --install-option="-DCUDA_TOOLKIT_ROOT_DIR=${CUDA_HOME}"
   ignore_run_exports:
     - blas
     - numpy
@@ -43,16 +42,15 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
-    - git   # [unix]
-    - m2-git   # [win]
+    # - git   # [unix]
+    # - m2-git   # [win]
   host:
     - pip
     - python
     - mkl-devel
-    - scikit-build
+    - scikit-build >=0.10.1
     - setuptools_scm_git_archive
   run:
-    - futures  # [py2k]
     - mkl
     - mkl_fft
     - numexpr
@@ -62,7 +60,7 @@ requirements:
     - scikit-image
     - scipy
     - six
-    - tifffile
+    # - tifffile
   run_constrained:
     - astra-toolbox >1.8
 
