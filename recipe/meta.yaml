@@ -48,6 +48,7 @@ requirements:
     - pip
     - python
     - mkl-devel
+    - mkl_fft
     - scikit-build >=0.10.1
     - setuptools_scm_git_archive
   run:
@@ -59,7 +60,8 @@ requirements:
     - python
     - scikit-image
     - scipy
-    # - tifffile
+    - setuptools
+    - tifffile
   run_constrained:
     - astra-toolbox >1.8
 
