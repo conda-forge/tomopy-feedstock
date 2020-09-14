@@ -31,19 +31,11 @@ build:
     --install-option="-GNinja"
     --install-option="--{{ cuda_flag }}-cuda"
     --install-option="-DCUDA_TOOLKIT_ROOT_DIR=${CUDA_HOME}"
-  ignore_run_exports:
-    - blas
-    - numpy
-    - python
-  missing_dso_whitelist:
-    - "*/libcuda.*"
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
-    # - git   # [unix]
-    # - m2-git   # [win]
   host:
     - pip
     - python
@@ -78,7 +70,7 @@ test:
   source_files:
     - test/*
   commands:
-    - unset CUDA_VERSION
+    - unset CUDA_VERSION  # [unix]
     - pytest test -vs
 
 app:
