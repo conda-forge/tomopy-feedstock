@@ -1,13 +1,13 @@
-{% set version = "1.7.1" %}
+{% set version = "1.8.1" %}
 {% set build = 0 %}
 
 # Set CUDA related variables
 {% if linux64 and cuda_compiler_version != "None" %}
 {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
-{% set cuda_install_option = "--enable-cuda" %}
+{% set cuda_flag = "enable" %}
 {% else %}
 {% set cuda_build_prefix = "" %}
-{% set cuda_install_option = "--disable-cuda" %}
+{% set cuda_flag = "disable" %}
 {% set build = build + 100 %}
 {% endif %}
 
@@ -23,53 +23,43 @@ source:
 build:
   number: {{ build }}
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
-  skip: true  # [py2k or (win and py==38)]
+  skip: true  # [py2k]
   merge_build_host: True  # [win]
   script:
-#     - export CUDA_TOOLKIT_ROOT_DIR="${CUDA_HOME}"
-    - ln -s ${CUDA_HOME}/include/* ${CONDA_PREFIX}/include/
-    - {{ PYTHON }} -m pip install .
-      --no-deps --ignore-installed --no-index --no-cache-dir -vv
-      --install-option="-GNinja"
-      --install-option="{{ cuda_install_option }}"
-  ignore_run_exports:
-    - blas
-    - numpy
-    - python
-  missing_dso_whitelist:
-    - "*/libcuda.*"
+    {{ PYTHON }} -m pip install .
+    --no-deps --ignore-installed --no-index --no-cache-dir -vv
+    --install-option="-GNinja"
+    --install-option="--{{ cuda_flag }}-cuda"
+    --install-option="-DCUDA_TOOLKIT_ROOT_DIR=${CUDA_HOME}"
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
-    - git
   host:
     - pip
     - python
-    - libopencv
     - mkl-devel
-    - scikit-build
+    - mkl_fft
+    - scikit-build >=0.10.1
     - setuptools_scm_git_archive
   run:
-    - futures  # [py2k]
     - mkl
     - mkl_fft
     - numexpr
     - numpy >1.12
-    - {{ pin_compatible('libopencv', min_pin='x.x', max_pin='x.x') }}
     - pywavelets
     - python
     - scikit-image
     - scipy
-    - six
+    - setuptools
     - tifffile
   run_constrained:
     - astra-toolbox >1.8
 
 test:
   requires:
-    - nose
+    - pytest
   imports:
     - tomopy
     - tomopy.misc
@@ -80,14 +70,15 @@ test:
   source_files:
     - test/*
   commands:
-    - nosetests test
+    - unset CUDA_VERSION  # [unix]
+    - pytest test -vs
 
 app:
     own_environment: True
 
 about:
     home: http://tomopy.readthedocs.io
-    license: BSD 3-Clause
+    license: BSD-3-Clause
     license_family: BSD
     license_file: LICENSE.txt
     summary: 'Tomographic reconstruction in Python.'
