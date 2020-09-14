@@ -11,6 +11,17 @@
 {% set build = build + 100 %}
 {% endif %}
 
+# Set FFT related variables
+{% if win or osx or linux32 or linux64 %}
+{% set mkl_flag = "enable" %}
+{% set libfft = "mkl-devel" %}
+{% set pyfft = "mkl_fft" %}
+{% else %}
+{% set mkl_flag = "disable" %}
+{% set libfft = "nomkl" %}
+{% set pyfft = "nomkl" %}
+{% endif %}
+
 package:
     name: tomopy
     version: {{ version }}
@@ -31,6 +42,7 @@ build:
     --install-option="-GNinja"
     --install-option="--{{ cuda_flag }}-cuda"
     --install-option="-DCUDA_TOOLKIT_ROOT_DIR=${CUDA_HOME}"
+    --install-option="--{{ mkl_flag }}-mkl"
 
 requirements:
   build:
@@ -39,13 +51,12 @@ requirements:
   host:
     - pip
     - python
-    - mkl-devel
-    - mkl_fft
+    - {{ libfft }}
+    - {{ pyfft }}
     - scikit-build >=0.10.1
     - setuptools_scm_git_archive
   run:
-    - mkl
-    - mkl_fft
+    - {{ pyfft }}
     - numexpr
     - numpy >1.12
     - pywavelets
