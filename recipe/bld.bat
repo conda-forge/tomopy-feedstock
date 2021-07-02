@@ -14,5 +14,5 @@ echo OPENCV is %USE_OPENCV%
  --install-option="-DCMAKE_CUDA_COMPILER=%CUDACXX%"^
  --install-option="-DCUDAToolkit_ROOT=%CUDA_PATH%"^
  --install-option="-DTOMOPY_USE_MKL:BOOL=%USE_MKL%"^
- --install-option="-DTOMOPY_USE_OPENCV:BOOL=%USE_OPENCV%"^
+ --install-option="-DTOMOPY_USE_OPENCV:BOOL=%USE_OPENCV%"
 
