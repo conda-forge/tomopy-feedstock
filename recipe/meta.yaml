@@ -3,27 +3,27 @@
 
 # Set CUDA related variables
 {% if (win64 or linux64) and cuda_compiler_version != "None" %}
-{% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
-{% set cuda_flag = "enable" %}
+  {% set use_cuda = "ON" %}
+  {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
 {% else %}
-{% set cuda_build_prefix = "" %}
-{% set cuda_flag = "disable" %}
-{% set build = build + 100 %}
+  {% set use_cuda = "OFF" %}
+  {% set cuda_build_prefix = "" %}
+  {% set build = build + 100 %}
 {% endif %}
 
 # Set FFT related variables
 {% if win or osx or linux32 or linux64 %}
-{% set mkl_flag = "enable" %}
-{% set libfft = "mkl-devel" %}
-{% set pyfft = "mkl_fft" %}
+  {% set use_mkl = "ON" %}
+  {% set libfft = "mkl-devel" %}
+  {% set pyfft = "mkl_fft" %}
 {% else %}
-{% set mkl_flag = "disable" %}
-{% set libfft = "nomkl" %}
-{% set pyfft = "nomkl" %}
+  {% set use_mkl = "OFF" %}
+  {% set libfft = "nomkl" %}
+  {% set pyfft = "nomkl" %}
 {% endif %}
 
 # Set OpenCV related variables
-{% set opencv_flag = "disable" %}
+{% set use_opencv = "OFF" %}
 
 package:
     name: tomopy
@@ -39,24 +39,11 @@ build:
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
   skip: true  # [py2k or (not win) or py != 38]
   merge_build_host: True  # [win]
-  script:
-    - {{ PYTHON }} -m pip install .
-      --no-deps --ignore-installed --no-index --no-cache-dir -vv
-      --install-option="-GNinja"
-      --install-option="--{{ cuda_flag }}-cuda"
-      --install-option="-DCUDAToolkit_ROOT=${CUDA_PATH}"
-      --install-option="--{{ mkl_flag }}-mkl"
-      --install-option="--{{ opencv_flag }}-opencv"  # [unix]
-    - for /f "tokens=* usebackq" %%f in (`where nvcc`) do (set "dummy=%%f" && call set "CUDACXX=%%dummy:\=\\%%")  # [win]
-    - echo "nvcc is %CUDACXX%, CUDA path is %CUDA_PATH%"  # [win]
-    - {{ PYTHON }} -m pip install .
-      --no-deps --ignore-installed --no-index --no-cache-dir -vv
-      --install-option="-GNinja"
-      --install-option="--{{ cuda_flag }}-cuda"
-      --install-option="-DCMAKE_CUDA_COMPILER=%CUDACXX%"
-      --install-option="-DCUDAToolkit_ROOT=%CUDA_PATH%"
-      --install-option="--{{ mkl_flag }}-mkl"
-      --install-option="--{{ opencv_flag }}-opencv"  # [win]
+  script_env:
+    - CUDA_PATH
+    - USE_CUDA={{ use_cuda }}
+    - USE_MKL={{ use_mkl }}
+    - USE_OPENCV={{ use_opencv }}
 
 requirements:
   build:
