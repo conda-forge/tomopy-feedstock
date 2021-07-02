@@ -37,7 +37,7 @@ source:
 build:
   number: {{ build }}
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
-  skip: true  # [py2k or (win and cuda_compiler_version != "None")]
+  skip: true  # [py2k or (not win) or py != 38]
   merge_build_host: True  # [win]
   script:
     - {{ PYTHON }} -m pip install .
