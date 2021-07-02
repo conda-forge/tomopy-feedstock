@@ -6,7 +6,7 @@ echo "nvcc is %CUDACXX%, CUDA path is %CUDA_PATH%"
 %PYTHON% -m pip install .^
  --no-deps --ignore-installed --no-index --no-cache-dir -vv^
  --install-option="-GNinja"^
- --install-option="-DTOMOPY_USE_CUDA:BOOL=%USE_CUDA%^
+ --install-option="-DTOMOPY_USE_CUDA:BOOL=%USE_CUDA%"^
  --install-option="-DCMAKE_CUDA_COMPILER=%CUDACXX%"^
  --install-option="-DCUDAToolkit_ROOT=%CUDA_PATH%"^
  --install-option="-DTOMOPY_USE_MKL:BOOL=%USE_MKL%"^
