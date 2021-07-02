@@ -92,8 +92,8 @@ test:
   source_files:
     - test/*
   commands:
-    - unset CUDA_VERSION  # [unix]
-    - set "CUDA_VERSION=" # [win]
+    - unset CUDA_VERSION   # [unix]
+    - set "CUDA_VERSION="  # [win]
     - pytest test -vs
 
 app:
