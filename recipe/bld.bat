@@ -6,6 +6,7 @@ echo CUDA path is %CUDA_PATH%
 echo CUDA is %USE_CUDA%
 echo MKL is %USE_MKL%
 echo OPENCV is %USE_OPENCV%
+echo CMAKE_ARGS is %CMAKE_ARGS%
 
 %PYTHON% -m pip install .^
  --no-deps --ignore-installed --no-index --no-cache-dir -vv^
