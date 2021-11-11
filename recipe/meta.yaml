@@ -32,7 +32,7 @@ package:
 source:
   # git checkout because PTL submodule is not included in GitHub tarball
   - git_url: https://github.com/carterbox/tomopy.git
-    git_rev: master
+    git_rev: test-precision
 
 build:
   number: {{ build }}
