@@ -1,10 +1,13 @@
-echo "CMAKE_ARGS=${CMAKE_ARGS}"
+$PYTHON setup.py build --
+    ${CMAKE_ARGS} \
+    -GNinja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DTOMOPY_USE_CUDA:BOOL=$USE_CUDA \
+    -DCUDAToolkit_ROOT=$CUDA_PATH \
+    -DTOMOPY_USE_MKL:BOOL=$USE_MKL \
+    -DTOMOPY_USE_OPENCV:BOOL=$USE_OPENCV \
+    -- -j${CPU_COUNT}
 
 $PYTHON -m pip install . \
-    --no-deps --ignore-installed --no-index --no-cache-dir -vv \
-    --install-option="-DCMAKE_BUILD_TYPE=Release" \
-    --install-option="-GNinja" \
-    --install-option="-DTOMOPY_USE_CUDA:BOOL=$USE_CUDA" \
-    --install-option="-DCUDAToolkit_ROOT=$CUDA_PATH" \
-    --install-option="-DTOMOPY_USE_MKL:BOOL=$USE_MKL" \
-    --install-option="-DTOMOPY_USE_OPENCV:BOOL=$USE_OPENCV"
+    --no-deps --ignore-installed --no-index --no-cache-dir -vv
+
