@@ -6,11 +6,13 @@ echo CUDA path is %CUDA_PATH%
 echo CUDA is %USE_CUDA%
 echo MKL is %USE_MKL%
 echo OPENCV is %USE_OPENCV%
+echo CMAKE_ARGS is %CMAKE_ARGS%
 
 %PYTHON% -m pip install .^
  --no-deps --ignore-installed --no-index --no-cache-dir -vv^
+ --install-option="-DCMAKE_BUILD_TYPE=Release"^
  --install-option="-GNinja"^
  --install-option="-DTOMOPY_USE_CUDA:BOOL=%USE_CUDA%"^
  --install-option="-DTOMOPY_USE_MKL:BOOL=%USE_MKL%"^
  --install-option="-DTOMOPY_USE_OPENCV:BOOL=%USE_OPENCV%"
-
+if errorlevel 1 exit /b 1
