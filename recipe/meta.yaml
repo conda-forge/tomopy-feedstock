@@ -2,28 +2,28 @@
 {% set build = 0 %}
 
 # Set CUDA related variables
-{% if linux64 and cuda_compiler_version != "None" %}
-{% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
-{% set cuda_flag = "enable" %}
+{% if (win64 or linux64) and cuda_compiler_version != "None" %}
+  {% set use_cuda = "ON" %}
+  {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
 {% else %}
-{% set cuda_build_prefix = "" %}
-{% set cuda_flag = "disable" %}
-{% set build = build + 100 %}
+  {% set use_cuda = "OFF" %}
+  {% set cuda_build_prefix = "" %}
+  {% set build = build + 100 %}
 {% endif %}
 
 # Set FFT related variables
 {% if win or osx or linux32 or linux64 %}
-{% set mkl_flag = "enable" %}
-{% set libfft = "mkl-devel" %}
-{% set pyfft = "mkl_fft" %}
+  {% set use_mkl = "ON" %}
+  {% set libfft = "mkl-devel" %}
+  {% set pyfft = "mkl_fft" %}
 {% else %}
-{% set mkl_flag = "disable" %}
-{% set libfft = "nomkl" %}
-{% set pyfft = "nomkl" %}
+  {% set use_mkl = "OFF" %}
+  {% set libfft = "nomkl" %}
+  {% set pyfft = "nomkl" %}
 {% endif %}
 
 # Set OpenCV related variables
-{% set opencv_flag = "disable" %}
+{% set use_opencv = "OFF" %}
 
 package:
     name: tomopy
@@ -37,21 +37,17 @@ source:
 build:
   number: {{ build }}
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
-  skip: true  # [py2k or (win and cuda_compiler_version != "None")]
-  merge_build_host: True  # [win]
-  script:
-    {{ PYTHON }} -m pip install .
-    --no-deps --ignore-installed --no-index --no-cache-dir -vv
-    --install-option="-GNinja"
-    --install-option="--{{ cuda_flag }}-cuda"
-    --install-option="-DCUDA_TOOLKIT_ROOT_DIR=${CUDA_HOME}"
-    --install-option="--{{ mkl_flag }}-mkl"
-    --install-option="--{{ opencv_flag }}-opencv"
+  skip: true  # [py2k or (cuda_compiler_version != "None")]
+  script_env:
+    - CUDA_PATH
+    - USE_CUDA={{ use_cuda }}
+    - USE_MKL={{ use_mkl }}
+    - USE_OPENCV={{ use_opencv }}
 
 requirements:
   build:
     - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}  # [linux64 and cuda_compiler_version != "None"]
+    - {{ compiler('cuda') }}  # [(win64 or linux64) and cuda_compiler_version != "None"]
   host:
     - pip
     - python
@@ -85,7 +81,8 @@ test:
   source_files:
     - test/*
   commands:
-    - unset CUDA_VERSION  # [unix]
+    - unset CUDA_VERSION   # [unix]
+    - set "CUDA_VERSION="  # [win]
     - pytest test -vs
 
 app:
