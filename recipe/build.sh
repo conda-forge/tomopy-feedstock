@@ -1,4 +1,4 @@
-$PYTHON setup.py build --
+$PYTHON setup.py build -- \
     ${CMAKE_ARGS} \
     -GNinja \
     -DCMAKE_BUILD_TYPE=Release \
