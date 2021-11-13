@@ -1,5 +1,4 @@
 $PYTHON setup.py build -- \
-    ${CMAKE_ARGS} \
     -GNinja \
     -DCMAKE_BUILD_TYPE=Release \
     -DTOMOPY_USE_CUDA:BOOL=$USE_CUDA \

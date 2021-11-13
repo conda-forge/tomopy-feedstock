@@ -9,7 +9,6 @@ echo OPENCV is %USE_OPENCV%
 echo CMAKE_ARGS is %CMAKE_ARGS%
 
 %PYTHON% setup.py build --^
-    %CMAKE_ARGS%^
     -GNinja^
     -DCMAKE_BUILD_TYPE=Release^
     -DTOMOPY_USE_CUDA:BOOL=%USE_CUDA%^
