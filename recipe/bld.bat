@@ -1,3 +1,5 @@
+set CUDACXXX="%CUDA_PATH%/bin/nvcc.exe"
+
 echo nvcc is %CUDACXX%
 echo CUDA path is %CUDA_PATH%
 echo CUDA is %USE_CUDA%
