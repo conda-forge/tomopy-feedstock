@@ -1,6 +1,3 @@
-:: Set CUDACXX with call to 'where nvcc'
-for /f "tokens=* usebackq" %%f in (`where nvcc`) do (set "dummy=%%f" && call set "CUDACXX=%%dummy:\=\\%%")
-
 echo nvcc is %CUDACXX%
 echo CUDA path is %CUDA_PATH%
 echo CUDA is %USE_CUDA%
