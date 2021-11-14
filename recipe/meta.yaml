@@ -37,7 +37,7 @@ source:
 build:
   number: {{ build }}
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
-  skip: true  # [py2k]
+  skip: true  # [py2k or (win64 and cuda_compiler_version != "None")]
   script_env:
     - CUDA_PATH
     - USE_CUDA={{ use_cuda }}
@@ -48,6 +48,7 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [(win64 or linux64) and cuda_compiler_version != "None"]
+    - git
   host:
     - pip
     - python
