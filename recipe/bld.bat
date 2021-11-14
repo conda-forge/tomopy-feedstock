@@ -20,4 +20,5 @@ if errorlevel 1 exit /b 1
 
 %PYTHON% -m pip install .^
     --no-deps --ignore-installed --no-index --no-cache-dir -vv^
+    --install-option="-GNinja"
 if errorlevel 1 exit /b 1

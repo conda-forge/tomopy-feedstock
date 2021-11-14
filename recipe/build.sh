@@ -8,5 +8,6 @@ $PYTHON setup.py build -- \
     -- -j${CPU_COUNT}
 
 $PYTHON -m pip install . \
-    --no-deps --ignore-installed --no-index --no-cache-dir -vv
+    --no-deps --ignore-installed --no-index --no-cache-dir -vv \
+    --install-option="-GNinja"
 
