@@ -48,7 +48,6 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [(win64 or linux64) and cuda_compiler_version != "None"]
-    - git
   host:
     - pip
     - python
