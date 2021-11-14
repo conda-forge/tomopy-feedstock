@@ -1,4 +1,4 @@
-set CUDACXXX="%CUDA_PATH%/bin/nvcc.exe"
+set CUDACXX="%CUDA_PATH%/bin/nvcc.exe"
 
 echo nvcc is %CUDACXX%
 echo CUDA path is %CUDA_PATH%
