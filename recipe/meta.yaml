@@ -38,11 +38,17 @@ build:
   number: {{ build }}
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
   skip: true  # [py2k or (win64 and cuda_compiler_version != "None")]
-  script_env:
-    - CUDA_PATH
-    - USE_CUDA={{ use_cuda }}
-    - USE_MKL={{ use_mkl }}
-    - USE_OPENCV={{ use_opencv }}
+  script:
+    {{ PYTHON }} -m pip install .
+    --no-deps --ignore-installed --no-index --no-cache-dir -vv
+    --install-option="--"
+    --install-option="-GNinja"
+    --install-option="-DCMAKE_BUILD_TYPE=Release"
+    --install-option="-DTOMOPY_USE_CUDA:BOOL={{ use_cuda }}"
+    --install-option="-DTOMOPY_USE_MKL:BOOL={{ use_mkl }}"
+    --install-option="-DTOMOPY_USE_OPENCV:BOOL={{ use_opencv }}"
+    --install-option="--"
+    --install-option="-j${CPU_COUNT}"
 
 requirements:
   build:
