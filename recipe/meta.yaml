@@ -48,7 +48,7 @@ build:
     --install-option="-DTOMOPY_USE_MKL:BOOL={{ use_mkl }}"
     --install-option="-DTOMOPY_USE_OPENCV:BOOL={{ use_opencv }}"
     --install-option="--"
-    --install-option="-j${CPU_COUNT}"
+    --install-option="-j{{ CPU_COUNT }}"
 
 requirements:
   build:
