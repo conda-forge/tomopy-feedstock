@@ -8,6 +8,11 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
+      linux_64_cuda_compiler_version10.2python3.10.____cpython:
+        CONFIG: linux_64_cuda_compiler_version10.2python3.10.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:10.2
+        SHORT_CONFIG: linux_64_cuda_compiler_version10.2p_h5bc94b7d0d
       linux_64_cuda_compiler_version10.2python3.7.____cpython:
         CONFIG: linux_64_cuda_compiler_version10.2python3.7.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -23,6 +28,11 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:10.2
         SHORT_CONFIG: linux_64_cuda_compiler_version10.2p_h4f464dec58
+      linux_64_cuda_compiler_version11.0python3.10.____cpython:
+        CONFIG: linux_64_cuda_compiler_version11.0python3.10.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.0
+        SHORT_CONFIG: linux_64_cuda_compiler_version11.0p_haae5409c05
       linux_64_cuda_compiler_version11.0python3.7.____cpython:
         CONFIG: linux_64_cuda_compiler_version11.0python3.7.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -38,6 +48,11 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.0
         SHORT_CONFIG: linux_64_cuda_compiler_version11.0p_hfdc16e22b0
+      linux_64_cuda_compiler_version11.1python3.10.____cpython:
+        CONFIG: linux_64_cuda_compiler_version11.1python3.10.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.1
+        SHORT_CONFIG: linux_64_cuda_compiler_version11.1p_h54aeef5b53
       linux_64_cuda_compiler_version11.1python3.7.____cpython:
         CONFIG: linux_64_cuda_compiler_version11.1python3.7.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -53,6 +68,11 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.1
         SHORT_CONFIG: linux_64_cuda_compiler_version11.1p_hb7be020d63
+      linux_64_cuda_compiler_version11.2python3.10.____cpython:
+        CONFIG: linux_64_cuda_compiler_version11.2python3.10.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.2
+        SHORT_CONFIG: linux_64_cuda_compiler_version11.2p_hb265343f3c
       linux_64_cuda_compiler_version11.2python3.7.____cpython:
         CONFIG: linux_64_cuda_compiler_version11.2python3.7.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -68,6 +88,11 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.2
         SHORT_CONFIG: linux_64_cuda_compiler_version11.2p_h391500c3ff
+      linux_64_cuda_compiler_versionNonepython3.10.____cpython:
+        CONFIG: linux_64_cuda_compiler_versionNonepython3.10.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+        SHORT_CONFIG: linux_64_cuda_compiler_versionNonep_hb6a3b480ab
       linux_64_cuda_compiler_versionNonepython3.7.____cpython:
         CONFIG: linux_64_cuda_compiler_versionNonepython3.7.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -83,6 +108,11 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
         SHORT_CONFIG: linux_64_cuda_compiler_versionNonep_hcf2538a78a
+      linux_aarch64_python3.10.____cpython:
+        CONFIG: linux_aarch64_python3.10.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
+        SHORT_CONFIG: linux_aarch64_python3.10.____cpython
       linux_aarch64_python3.7.____cpython:
         CONFIG: linux_aarch64_python3.7.____cpython
         UPLOAD_PACKAGES: 'True'
