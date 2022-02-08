@@ -1,12 +1,8 @@
 conda_forge_output_validation: true
-<<<<<<< HEAD
-provider: {linux_aarch64: default, linux_ppc64le: default, win: azure}
-=======
 provider:
   linux_aarch64: default
   linux_ppc64le: default
   win: azure
->>>>>>> conda-forge/master
 azure:
   # flag for forcing the building all supported providers
   force: False
