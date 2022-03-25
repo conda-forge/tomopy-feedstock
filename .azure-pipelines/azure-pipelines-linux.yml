@@ -148,26 +148,6 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
         SHORT_CONFIG: linux_aarch64_cuda_compiler_version_h5419c28e8d
-      linux_ppc64le_cuda_compiler_versionNonepython3.10.____cpython:
-        CONFIG: linux_ppc64le_cuda_compiler_versionNonepython3.10.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-        SHORT_CONFIG: linux_ppc64le_cuda_compiler_version_hcbde6c8390
-      linux_ppc64le_cuda_compiler_versionNonepython3.7.____cpython:
-        CONFIG: linux_ppc64le_cuda_compiler_versionNonepython3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-        SHORT_CONFIG: linux_ppc64le_cuda_compiler_version_h92b634a847
-      linux_ppc64le_cuda_compiler_versionNonepython3.8.____cpython:
-        CONFIG: linux_ppc64le_cuda_compiler_versionNonepython3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-        SHORT_CONFIG: linux_ppc64le_cuda_compiler_version_hdf47a17d65
-      linux_ppc64le_cuda_compiler_versionNonepython3.9.____cpython:
-        CONFIG: linux_ppc64le_cuda_compiler_versionNonepython3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-        SHORT_CONFIG: linux_ppc64le_cuda_compiler_version_hd6c02a0c8e
   timeoutInMinutes: 360
 
   steps:
