@@ -2,7 +2,7 @@
 {% set build = 2 %}
 
 # Set CUDA related variables
-{% if not (cuda_compiler_version in (undefined, "None")) %}
+{% if not (cuda_compiler_version in (None, "None")) %}
   {% set use_cuda = "ON" %}
   {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
 {% else %}
