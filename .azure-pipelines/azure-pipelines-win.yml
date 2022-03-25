@@ -8,10 +8,22 @@ jobs:
     vmImage: windows-2019
   strategy:
     matrix:
-      win_64_cuda_compiler_versionNone:
-        CONFIG: win_64_cuda_compiler_versionNone
+      win_64_cuda_compiler_versionNonepython3.10.____cpython:
+        CONFIG: win_64_cuda_compiler_versionNonepython3.10.____cpython
         UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: win_64_cuda_compiler_versionNone
+        SHORT_CONFIG: win_64_cuda_compiler_versionNonepyt_h464161c403
+      win_64_cuda_compiler_versionNonepython3.7.____cpython:
+        CONFIG: win_64_cuda_compiler_versionNonepython3.7.____cpython
+        UPLOAD_PACKAGES: 'True'
+        SHORT_CONFIG: win_64_cuda_compiler_versionNonepyt_h732f840916
+      win_64_cuda_compiler_versionNonepython3.8.____cpython:
+        CONFIG: win_64_cuda_compiler_versionNonepython3.8.____cpython
+        UPLOAD_PACKAGES: 'True'
+        SHORT_CONFIG: win_64_cuda_compiler_versionNonepyt_h279e867047
+      win_64_cuda_compiler_versionNonepython3.9.____cpython:
+        CONFIG: win_64_cuda_compiler_versionNonepython3.9.____cpython
+        UPLOAD_PACKAGES: 'True'
+        SHORT_CONFIG: win_64_cuda_compiler_versionNonepyt_heb1ef13aa2
   timeoutInMinutes: 360
   variables:
     CONDA_BLD_PATH: D:\\bld\\
