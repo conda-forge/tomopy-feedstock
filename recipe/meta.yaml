@@ -2,7 +2,7 @@
 {% set build = 2 %}
 
 # Set CUDA related variables
-{% if (win64 or linux64) and cuda_compiler_version != "None" %}
+{% if not (cuda_compiler_version in (undefined, "None")) %}
   {% set use_cuda = "ON" %}
   {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
 {% else %}
@@ -37,7 +37,7 @@ source:
 build:
   number: {{ build }}
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
-  skip: true  # [py2k or (win64 and cuda_compiler_version != "None")]
+  skip: true  # [not (cuda_compiler_version in (undefined, "None")) and not (linux64 or aarch64)]
   script:
     {{ PYTHON }} -m pip install .
     --no-deps --ignore-installed --no-index --no-cache-dir -vv
@@ -53,10 +53,10 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}  # [(win64 or linux64) and cuda_compiler_version != "None"]
+    - {{ compiler('cuda') }}  # [use_cuda == "ON"]
   host:
     - pip
-    - python
+    - python >=3
     - {{ libfft }}
     - {{ pyfft }}
     - scikit-build >=0.10.1
@@ -66,7 +66,7 @@ requirements:
     - numexpr
     - numpy >1.12
     - pywavelets
-    - python
+    - python >=3
     - scikit-image
     - scipy
     - setuptools
