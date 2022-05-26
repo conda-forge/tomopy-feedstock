@@ -76,6 +76,9 @@ requirements:
     - python
     - scikit-image
     - scipy
+    # setuptools required for pkg_resources until next release
+    # when importlib_metadata is backport for python<3.8
+    - setuptools
     - tifffile
   run_constrained:
     - astra-toolbox >1.8
