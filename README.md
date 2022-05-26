@@ -3,7 +3,7 @@ About tomopy
 
 Home: http://tomopy.readthedocs.io
 
-Package license: BSD-3-Clause
+Package license: BSD-3-Clause AND MIT
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tomopy-feedstock/blob/main/LICENSE.txt)
 
@@ -429,4 +429,5 @@ Feedstock Maintainers
 * [@oleksandr-pavlyk](https://github.com/oleksandr-pavlyk/)
 * [@ravescovi](https://github.com/ravescovi/)
 * [@tacaswell](https://github.com/tacaswell/)
+* [@tomopy/admins](https://github.com/tomopy/admins/)
 
