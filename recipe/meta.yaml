@@ -61,6 +61,12 @@ requirements:
   host:
     - {{ libfft }}
 
+test:
+  commands:
+  # TODO: Add more existence tests
+    - test -f $PREFIX/lib/libtomo-recon$SHLIB_EXT  # [unix]
+    - if not exist %LIBRARY_LIB%\\tomo-recon.lib exit 1  # [win]
+
 outputs:
   - name: libtomo
   - name: tomopy
