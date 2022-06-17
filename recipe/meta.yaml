@@ -2,7 +2,7 @@
 {% set build = 2 %}
 
 # Set CUDA related variables
-{% if cuda_compiler_version not in (undefined, "None") %}
+{% if cuda_compiler_version is defined and cuda_compiler_version == "None" %}
   {% set use_cuda = "ON" %}
   {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
 {% else %}
@@ -30,7 +30,7 @@ package:
 
 source:
   - git_url: https://github.com/carterbox/tomopy.git
-    git_rev: separate-libtomo
+    git_tag: separate-libtomo
     git_depth: 1
   # - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
   #   sha256: 4e5691c2b083753692ba4376ce301578037071c83fc61a6ae9e5bc9e6fcd3d1f
@@ -63,9 +63,13 @@ requirements:
 
 test:
   commands:
-  # TODO: Add more existence tests
     - test -f $PREFIX/lib/libtomo-recon$SHLIB_EXT  # [unix]
+    - test -f $PREFIX/include/libtomo/recon.h  # [unix]
+    - test -f $PREFIX/lib/cmake/libtomo/libtomoTargets.cmake  # [unix]
     - if not exist %LIBRARY_LIB%\\tomo-recon.lib exit 1  # [win]
+    - if not exist %LIBRARY_BIN%\\tomo-recon.dll exit 1  # [win]
+    - if not exist %LIBRARY_INC%\\libtomo\\recon.h exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\cmake\\libtomo\\libtomoTargets.cmake exit 1  # [win]
 
 outputs:
   - name: libtomo
@@ -76,19 +80,18 @@ outputs:
       noarch: python
     requirements:
       host:
+        - {{ pin_subpackage('libtomo', exact=True) }}
         - pip
-        - python =3.*
-        - {{ pyfft }}
+        - python >=3.6,<4
         - setuptools >=45
         - setuptools_scm >=6.2
         - setuptools_scm_git_archive
       run:
-        - {{ pin_subpackage('libtomo') }}
         - {{ pyfft }}
         - numexpr =2.*
         - numpy >1.12,!=1.22.4
         - pywavelets =1.*
-        - python =3.*
+        - python >=3.6,<4
         - scikit-image >=0.17,<1
         - scipy =1.*
         - importlib_metadata
