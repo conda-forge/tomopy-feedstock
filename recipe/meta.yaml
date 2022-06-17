@@ -29,9 +29,7 @@ package:
     version: {{ version }}
 
 source:
-  - git_url: https://github.com/carterbox/tomopy.git
-    git_tag: separate-libtomo
-    git_depth: 1
+  - url: https://github.com/tomopy/tomopy/archive/0d846f75caf54669df91f278b91bcb818d0b9e1b.zip
   # - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
   #   sha256: 4e5691c2b083753692ba4376ce301578037071c83fc61a6ae9e5bc9e6fcd3d1f
     # There is a special alpha release for only tomopy, so it does not make
