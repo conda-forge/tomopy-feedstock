@@ -14,6 +14,7 @@ if errorlevel 1 exit /b 1
 
 cmake %SRC_DIR% ^
     -DCMAKE_BUILD_TYPE=Release^
+    -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX%^
     -GNinja^
     -DTOMOPY_USE_CUDA:BOOL=%USE_CUDA%^
     -DTOMOPY_USE_MKL:BOOL=%USE_MKL%^
