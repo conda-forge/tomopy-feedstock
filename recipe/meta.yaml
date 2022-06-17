@@ -71,6 +71,9 @@ test:
     - if not exist %LIBRARY_INC%\\libtomo\\recon.h exit 1  # [win]
     - if not exist %LIBRARY_LIB%\\cmake\\libtomo\\libtomoTargets.cmake exit 1  # [win]
 
+app:
+    own_environment: True
+
 outputs:
   - name: libtomo
   - name: tomopy
@@ -116,8 +119,6 @@ outputs:
         - set "CUDA_VERSION="  # [win]
         - pytest test -vs
 
-app:
-    own_environment: True
 
 about:
     home: http://tomopy.readthedocs.io
