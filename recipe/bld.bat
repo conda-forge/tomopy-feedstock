@@ -8,11 +8,22 @@ echo MKL is %USE_MKL%
 echo OPENCV is %USE_OPENCV%
 echo CMAKE_ARGS is %CMAKE_ARGS%
 
-%PYTHON% -m pip install .^
- --no-deps --ignore-installed --no-index --no-cache-dir -vv^
- --install-option="-DCMAKE_BUILD_TYPE=Release"^
- --install-option="-GNinja"^
- --install-option="-DTOMOPY_USE_CUDA:BOOL=%USE_CUDA%"^
- --install-option="-DTOMOPY_USE_MKL:BOOL=%USE_MKL%"^
- --install-option="-DTOMOPY_USE_OPENCV:BOOL=%USE_OPENCV%"
+mkdir build
+cd build
 if errorlevel 1 exit /b 1
+
+cmake %SRC_DIR% ^
+    -DCMAKE_BUILD_TYPE=Release^
+    -GNinja^
+    -DTOMOPY_USE_CUDA:BOOL=%USE_CUDA%^
+    -DTOMOPY_USE_MKL:BOOL=%USE_MKL%^
+    -DTOMOPY_USE_OPENCV:BOOL=%USE_OPENCV%^
+    %CMAKE_ARGS%
+if errorlevel 1 exit /b 1
+
+cmake --build .
+if errorlevel 1 exit /b 1
+
+cmake --install .
+if errorlevel 1 exit /b 1
+

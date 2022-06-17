@@ -1,14 +1,13 @@
 {% set version = "1.11.0" %}
-{% set build = 0 %}
+{% set build = 2 %}
 
 # Set CUDA related variables
-{% if (win64 or linux64) and cuda_compiler_version != "None" %}
+{% if cuda_compiler_version not in (undefined, "None") %}
   {% set use_cuda = "ON" %}
   {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
 {% else %}
   {% set use_cuda = "OFF" %}
   {% set cuda_build_prefix = "" %}
-  {% set build = build + 100 %}
 {% endif %}
 
 # Set FFT related variables
@@ -26,73 +25,98 @@
 {% set use_opencv = "OFF" %}
 
 package:
-    name: tomopy
+    name: libtomo
     version: {{ version }}
 
 source:
-  # git checkout because PTL submodule is not included in GitHub tarball
-  - git_url: https://github.com/tomopy/tomopy.git
-    git_rev: {{ version }}
+  - git_url: https://github.com/carterbox/tomopy.git
+    git_rev: separate-libtomo
+    git_depth: 1
+  # - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
+  #   sha256: 4e5691c2b083753692ba4376ce301578037071c83fc61a6ae9e5bc9e6fcd3d1f
+    # There is a special alpha release for only tomopy, so it does not make
+    # sense to dynamically link to PTL from a shared library
+  - url: https://github.com/jrmadsen/PTL/archive/refs/tags/tomopy-v1.0.tar.gz
+    sha256: 2fa6b5f8e9e63aa0e9c4e933eadc216e32b13cc6388a15bc3f8fb369757417f2
+    folder: source/PTL
 
 build:
   number: {{ build }}
   string: "{{ cuda_build_prefix }}py{{ py }}h{{ PKG_HASH }}_{{ build }}"
-  skip: true  # [py2k or (not win) or py != 38]
+  skip: true  # [win and (cuda_compiler_version not in (undefined, "None"))]
   script_env:
     - CUDA_PATH
     - USE_CUDA={{ use_cuda }}
     - USE_MKL={{ use_mkl }}
     - USE_OPENCV={{ use_opencv }}
+  run_exports:
+    - {{ pin_subpackage('libtomo') }}
 
 requirements:
   build:
     - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}  # [(win64 or linux64) and cuda_compiler_version != "None"]
+    - {{ compiler('cuda') }}  # [cuda_compiler_version not in (undefined, "None")]
+    - cmake >=3.17
+    - ninja
   host:
-    - pip
-    - python
     - {{ libfft }}
-    - {{ pyfft }}
-    - scikit-build >=0.10.1
-    - setuptools_scm_git_archive
-  run:
-    - {{ pyfft }}
-    - numexpr
-    - numpy >1.12
-    - pywavelets
-    - python
-    - scikit-image
-    - scipy
-    - setuptools
-    - tifffile
-  run_constrained:
-    - astra-toolbox >1.8
 
-test:
-  requires:
-    - pytest
-  imports:
-    - tomopy
-    - tomopy.misc
-    - tomopy.prep
-    - tomopy.recon
-    - tomopy.sim
-    - tomopy.util
-  source_files:
-    - test/*
-  commands:
-    - unset CUDA_VERSION   # [unix]
-    - set "CUDA_VERSION="  # [win]
-    - pytest test -vs
+outputs:
+  - name: libtomo
+  - name: tomopy
+    script: build-python.sh   # [unix]
+    script: bld-python.bat    # [win]
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python =3.*
+        - {{ pyfft }}
+        - setuptools >=45
+        - setuptools_scm >=6.2
+        - setuptools_scm_git_archive
+      run:
+        - {{ pin_subpackage('libtomo') }}
+        - {{ pyfft }}
+        - numexpr =2.*
+        - numpy >1.12,!=1.22.4
+        - pywavelets =1.*
+        - python =3.*
+        - scikit-image >=0.17,<1
+        - scipy =1.*
+        - importlib_metadata
+        - tifffile >=2019
+      run_constrained:
+        - astra-toolbox >1.8
+
+    test:
+      requires:
+        - pytest
+      imports:
+        - tomopy
+        - tomopy.misc
+        - tomopy.prep
+        - tomopy.recon
+        - tomopy.sim
+        - tomopy.util
+      source_files:
+        - test/*
+      commands:
+        - unset CUDA_VERSION   # [unix]
+        - set "CUDA_VERSION="  # [win]
+        - pytest test -vs
 
 app:
     own_environment: True
 
 about:
     home: http://tomopy.readthedocs.io
-    license: BSD-3-Clause
+    license: BSD-3-Clause AND MIT
     license_family: BSD
-    license_file: LICENSE.txt
+    license_file:
+      - LICENSE.txt
+      - source/PTL/LICENSE
     summary: 'Tomographic reconstruction in Python.'
     description: |
       TomoPy is an open-source Python package for tomographic data
@@ -102,6 +126,7 @@ about:
 
 extra:
     recipe-maintainers:
+        - tomopy/admins
         - dgursoy
         - decarlof
         - licode
