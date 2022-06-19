@@ -1,5 +1,5 @@
 {% set version = "1.11.0" %}
-{% set build = 2 %}
+{% set build = 3 %}
 
 # Set CUDA related variables
 {% if (win64 or linux64) and cuda_compiler_version != "None" %}
@@ -30,7 +30,7 @@ package:
 
 source:
   - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
-    sha256: 4e5691c2b083753692ba4376ce301578037071c83fc61a6ae9e5bc9e6fcd3d1f
+    sha256: 105ef5ea184413e7e6d5ab538a60de1831e2b6b63774d2cedd50192113c091ea
     # There is a special alpha release for only tomopy, so it does not make
     # sense to dynamically link to PTL from a shared library
   - url: https://github.com/jrmadsen/PTL/archive/refs/tags/tomopy-v1.0.tar.gz
