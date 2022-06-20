@@ -1,5 +1,5 @@
 {% set version = "1.11.0" %}
-{% set build = 2 %}
+{% set build = 100 %}
 
 # Set CUDA related variables
 {% if cuda_compiler_version is defined and cuda_compiler_version != "None" %}
@@ -14,7 +14,7 @@
 {% if win or osx or linux32 or linux64 %}
   {% set use_mkl = "ON" %}
   # MKL cannot solve environment?
-  {% set libfft = "mkl-devel <2022.1" %}
+  {% set libfft = "mkl-devel" %}
   {% set pyfft = "mkl_fft" %}
 {% else %}
   {% set use_mkl = "OFF" %}
@@ -60,6 +60,8 @@ requirements:
     - ninja
   host:
     - {{ libfft }}
+  run_constrained:
+    - tomopy >=1.11.0  # tomopy split into two packages
 
 test:
   commands:
@@ -83,13 +85,13 @@ outputs:
       noarch: python
     requirements:
       host:
-        - {{ pin_subpackage('libtomo', exact=True) }}
         - pip
         - python >=3.6,<4
         - setuptools >=45
         - setuptools_scm >=6.2
         - setuptools_scm_git_archive
       run:
+        - {{ pin_subpackage('libtomo') }}
         - {{ pyfft }}
         - numexpr =2.*
         - numpy >1.12,!=1.22.4
