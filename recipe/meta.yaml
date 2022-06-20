@@ -2,7 +2,7 @@
 {% set build = 100 %}
 
 # Set CUDA related variables
-{% if cuda_compiler_version is defined and cuda_compiler_version != "None" %}
+{% if false %}
   {% set use_cuda = "ON" %}
   {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
 {% else %}
@@ -26,12 +26,13 @@
 {% set use_opencv = "OFF" %}
 
 package:
-    name: libtomo
+    name: tomopy
     version: {{ version }}
 
 source:
   - git_url: https://github.com/carterbox/tomopy.git
-    git_rev: 0ebf82035dbedb1dd31f0999394784afa3b9f28b
+    git_rev: 230991b0b6fe8642d47c2d4c459ef1e3987f4260
+    git_depth: 5
   # - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
   #   sha256: 4e5691c2b083753692ba4376ce301578037071c83fc61a6ae9e5bc9e6fcd3d1f
     # There is a special alpha release for only tomopy, so it does not make
@@ -42,42 +43,44 @@ source:
 
 build:
   number: {{ build }}
-  string: "{{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ build }}"
-  skip: true  # [win and (cuda_compiler_version not in (undefined, "None"))]
-  script_env:
-    - CUDA_PATH
-    - USE_CUDA={{ use_cuda }}
-    - USE_MKL={{ use_mkl }}
-    - USE_OPENCV={{ use_opencv }}
-  run_exports:
-    - {{ pin_subpackage('libtomo') }}
-
-requirements:
-  build:
-    - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}  # [use_cuda == "ON"]
-    - cmake >=3.17
-    - ninja
-  host:
-    - {{ libfft }}
-  run_constrained:
-    - tomopy >=1.11.0  # tomopy split into two packages
-
-test:
-  commands:
-    - test -f $PREFIX/lib/libtomo-recon$SHLIB_EXT  # [unix]
-    - test -f $PREFIX/include/libtomo/recon.h  # [unix]
-    - test -f $PREFIX/lib/cmake/libtomo/libtomoTargets.cmake  # [unix]
-    - if not exist %LIBRARY_LIB%\\tomo-recon.lib exit 1  # [win]
-    - if not exist %LIBRARY_BIN%\\tomo-recon.dll exit 1  # [win]
-    - if not exist %LIBRARY_INC%\\libtomo\\recon.h exit 1  # [win]
-    - if not exist %LIBRARY_LIB%\\cmake\\libtomo\\libtomoTargets.cmake exit 1  # [win]
+  skip: true  # [not linux]
 
 app:
     own_environment: True
 
 outputs:
   - name: libtomo
+    script: build-cxx.sh   # [unix]
+    script: bld-cxx.bat    # [win]
+    build:
+      string: "{{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ build }}"
+      script_env:
+        - CUDA_PATH
+        - USE_CUDA={{ use_cuda }}
+        - USE_MKL={{ use_mkl }}
+        - USE_OPENCV={{ use_opencv }}
+      run_exports:
+        - {{ pin_subpackage('libtomo') }}
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - {{ compiler('cuda') }}  # [cuda_compiler_version != None]
+        - cmake >=3.17
+        - ninja
+      host:
+        - {{ libfft }}
+      run_constrained:
+        - tomopy >=1.11.0  # tomopy split into two packages
+    test:
+      commands:
+        - test -f $PREFIX/lib/libtomo-recon$SHLIB_EXT  # [unix]
+        - test -f $PREFIX/include/libtomo/recon.h  # [unix]
+        - test -f $PREFIX/lib/cmake/libtomo/libtomoTargets.cmake  # [unix]
+        - if not exist %LIBRARY_LIB%\\tomo-recon.lib exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\tomo-recon.dll exit 1  # [win]
+        - if not exist %LIBRARY_INC%\\libtomo\\recon.h exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\cmake\\libtomo\\libtomoTargets.cmake exit 1  # [win]
+
   - name: tomopy
     script: build-python.sh   # [unix]
     script: bld-python.bat    # [win]
@@ -103,7 +106,6 @@ outputs:
         - tifffile >=2019
       run_constrained:
         - astra-toolbox >1.8
-
     test:
       requires:
         - pytest
@@ -120,7 +122,6 @@ outputs:
         - unset CUDA_VERSION   # [unix]
         - set "CUDA_VERSION="  # [win]
         - pytest test -vs
-
 
 about:
     home: http://tomopy.readthedocs.io
