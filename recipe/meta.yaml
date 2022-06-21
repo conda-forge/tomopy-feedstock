@@ -2,18 +2,17 @@
 {% set build = 100 %}
 
 # Set CUDA related variables
-{% if false %}
-  {% set use_cuda = "ON" %}
-  {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
-{% else %}
+{% if cuda_compiler_version in (undefined, "None") %}
   {% set use_cuda = "OFF" %}
   {% set cuda_build_prefix = "" %}
+{% else %}
+  {% set use_cuda = "ON" %}
+  {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
 {% endif %}
 
 # Set FFT related variables
 {% if win or osx or linux32 or linux64 %}
   {% set use_mkl = "ON" %}
-  # MKL cannot solve environment?
   {% set libfft = "mkl-devel" %}
   {% set pyfft = "mkl_fft" %}
 {% else %}
@@ -43,19 +42,18 @@ source:
 
 build:
   number: {{ build }}
-  skip: true  # [not linux]
+  skip: true  # [win and not (cuda_compiler_version in (undefined, "None"))]
 
 app:
     own_environment: True
 
 outputs:
   - name: libtomo
-    script: build-cxx.sh   # [unix]
-    script: bld-cxx.bat    # [win]
+    script: build-cxx.sh  # [unix]
+    script: bld-cxx.bat   # [win]
     build:
       string: "{{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ build }}"
       script_env:
-        - CUDA_PATH
         - USE_CUDA={{ use_cuda }}
         - USE_MKL={{ use_mkl }}
         - USE_OPENCV={{ use_opencv }}
@@ -64,7 +62,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
-        - {{ compiler('cuda') }}  # [cuda_compiler_version != None]
+        - {{ compiler('cuda') }}  # [use_cuda == "ON"]
         - cmake >=3.17
         - ninja
       host:
@@ -82,8 +80,8 @@ outputs:
         - if not exist %LIBRARY_LIB%\\cmake\\libtomo\\libtomoTargets.cmake exit 1  # [win]
 
   - name: tomopy
-    script: build-python.sh   # [unix]
-    script: bld-python.bat    # [win]
+    script: build-python.sh  # [unix]
+    script: bld-python.bat   # [win]
     build:
       noarch: python
     requirements:
