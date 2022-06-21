@@ -25,7 +25,7 @@
 {% set use_opencv = "OFF" %}
 
 package:
-    name: tomopy
+    name: libtomo
     version: {{ version }}
 
 source:
@@ -42,7 +42,7 @@ source:
 
 build:
   number: {{ build }}
-  skip: true  # [win and not (cuda_compiler_version in (undefined, "None"))]
+  skip: True  # [win and not (cuda_compiler_version in (undefined, "None"))]
 
 app:
     own_environment: True
