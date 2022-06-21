@@ -30,8 +30,8 @@ package:
 
 source:
   - git_url: https://github.com/carterbox/tomopy.git
-    git_rev: 230991b0b6fe8642d47c2d4c459ef1e3987f4260
-    git_depth: 5
+    git_tag: 230991b0b6fe8642d47c2d4c459ef1e3987f4260
+    git_depth: 1
   # - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
   #   sha256: 4e5691c2b083753692ba4376ce301578037071c83fc61a6ae9e5bc9e6fcd3d1f
     # There is a special alpha release for only tomopy, so it does not make
@@ -129,7 +129,7 @@ about:
       - LICENSE.txt
       - source/PTL/LICENSE
     summary: 'Tomographic reconstruction in Python.'
-    description: |
+    description: >
       TomoPy is an open-source Python package for tomographic data
       processing and image reconstruction.
     doc_url: http://tomopy.readthedocs.io
