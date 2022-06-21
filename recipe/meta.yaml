@@ -2,7 +2,7 @@
 {% set build = 100 %}
 
 # Set CUDA related variables
-{% if cuda_compiler_version in (undefined, "None") %}
+{% if cuda_compiler_version is not defined or cuda_compiler_version == "None" %}
   {% set use_cuda = "OFF" %}
   {% set cuda_build_prefix = "" %}
 {% else %}
@@ -42,7 +42,7 @@ source:
 
 build:
   number: {{ build }}
-  skip: True  # [win and not (cuda_compiler_version in (undefined, "None"))]
+  skip: True  # [win and (cuda_compiler_version != "None")]
 
 app:
     own_environment: True
