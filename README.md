@@ -13,8 +13,7 @@ Development: https://github.com/tomopy/tomopy
 
 Documentation: http://tomopy.readthedocs.io
 
-TomoPy is an open-source Python package for tomographic data
-processing and image reconstruction.
+TomoPy is an open-source Python package for tomographic data processing and image reconstruction.
 
 
 Current build status
