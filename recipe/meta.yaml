@@ -29,13 +29,12 @@ package:
     version: {{ version }}
 
 source:
-  - git_url: https://github.com/carterbox/tomopy.git
-    git_tag: 9afa5c81ea2e107b2081265d0455d0c1525feb1b
-    git_depth: 1
-    patches:
-      - shared-cuda-npp.patch
+  - url: https://github.com/carterbox/tomopy/archive/9afa5c81ea2e107b2081265d0455d0c1525feb1b.tar.gz
+    sha256: 859e212cc2e7b46ec82a54884b2d1e55d2ae486754418040f878f70ad75a37cc
   # - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
   #   sha256: 4e5691c2b083753692ba4376ce301578037071c83fc61a6ae9e5bc9e6fcd3d1f
+    patches:
+      - shared-cuda-npp.patch
     # There is a special alpha release for only tomopy, so it does not make
     # sense to dynamically link to PTL from a shared library
   - url: https://github.com/jrmadsen/PTL/archive/refs/tags/tomopy-v1.0.tar.gz
@@ -86,6 +85,8 @@ outputs:
     script: bld-python.bat   # [win]
     build:
       noarch: python
+      script_env:
+        - SETUPTOOLS_SCM_PRETEND_VERSION={{ PKG_VERSION }}
     requirements:
       host:
         - pip
