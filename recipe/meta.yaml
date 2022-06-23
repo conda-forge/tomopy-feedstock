@@ -1,13 +1,15 @@
-{% set version = "1.11.0" %}
-{% set build = 100 %}
+{% set version = "1.12.0" %}
+{% set build = 0 %}
 
 # Set CUDA related variables
 {% if cuda_compiler_version is not defined or cuda_compiler_version == "None" %}
   {% set use_cuda = "OFF" %}
   {% set cuda_build_prefix = "" %}
+  {% set cuda_build_post = build %}
 {% else %}
   {% set use_cuda = "ON" %}
   {% set cuda_build_prefix = "cuda" + cuda_compiler_version|string %}
+  {% set cuda_build_post = build + 100 %}
 {% endif %}
 
 # Set FFT related variables
@@ -29,10 +31,8 @@ package:
     version: {{ version }}
 
 source:
-  - url: https://github.com/carterbox/tomopy/archive/9afa5c81ea2e107b2081265d0455d0c1525feb1b.tar.gz
-    sha256: 859e212cc2e7b46ec82a54884b2d1e55d2ae486754418040f878f70ad75a37cc
-  # - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
-  #   sha256: 4e5691c2b083753692ba4376ce301578037071c83fc61a6ae9e5bc9e6fcd3d1f
+  - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
+    sha256: fbc613b194121eb0b09c591dd9455ba9f2449c7b809f0940a78c9d137387c4df
     patches:
       - shared-cuda-npp.patch
     # There is a special alpha release for only tomopy, so it does not make
@@ -53,7 +53,7 @@ outputs:
     script: build-cxx.sh  # [unix]
     script: bld-cxx.bat   # [win]
     build:
-      string: "{{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ build }}"
+      string: "{{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ cuda_build_post }}"
       script_env:
         - USE_CUDA={{ use_cuda }}
         - USE_MKL={{ use_mkl }}
@@ -97,16 +97,16 @@ outputs:
       run:
         - {{ pin_subpackage('libtomo') }}
         - {{ pyfft }}
+        - importlib_metadata
         - numexpr =2.*
         - numpy >1.12,!=1.22.4
         - pywavelets =1.*
         - python >=3.6,<4
         - scikit-image >=0.17,<1
         - scipy =1.*
-        - importlib_metadata
         - tifffile >=2019
       run_constrained:
-        - astra-toolbox >1.8
+        - astra-toolbox >1.8,<3
     test:
       requires:
         - pytest
