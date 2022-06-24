@@ -1,0 +1,17 @@
+diff --git a/cmake/Modules/Packages.cmake b/cmake/Modules/Packages.cmake
+index 22a1fbe0..35b3bcf1 100644
+--- a/cmake/Modules/Packages.cmake
++++ b/cmake/Modules/Packages.cmake
+@@ -192,9 +192,9 @@ if(TOMOPY_USE_CUDA)
+   add_library(tomopy::cuda-npp ALIAS tomopy-cuda-npp)
+ 
+   foreach(_NPP_LIB nppc npps nppig nppisu)
+-    if(TARGET CUDA::${_NPP_LIB}_static)
+-      target_link_libraries(tomopy-cuda-npp INTERFACE CUDA::${_NPP_LIB}_static)
+-    elseif(TARGET CUDA::${_NPP_LIB})
++    # if(TARGET CUDA::${_NPP_LIB}_static)
++    #   target_link_libraries(tomopy-cuda-npp INTERFACE CUDA::${_NPP_LIB}_static)
++    if(TARGET CUDA::${_NPP_LIB})
+       target_link_libraries(tomopy-cuda-npp INTERFACE CUDA::${_NPP_LIB})
+     else()
+       message(
