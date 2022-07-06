@@ -32,7 +32,7 @@ package:
 
 source:
   - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
-    sha256: ff7f36014d14b97e3cfa3570531de7d3d18c6ba54fff64bd935788146de09f30
+    sha256: bfdd382e32fac5649cfae8f7aafc70d0a79ff28dd363a834f65c27cf5f530267
     patches:
       - shared-cuda-npp.patch
     # There is a special alpha release for only tomopy, so it does not make
