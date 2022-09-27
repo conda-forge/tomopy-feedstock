@@ -1,5 +1,5 @@
-{% set version = "1.12.1" %}
-{% set build = 1 %}
+{% set version = "1.12.2" %}
+{% set build = 0 %}
 
 # Set CUDA related variables
 {% if cuda_compiler_version is not defined or cuda_compiler_version == "None" %}
@@ -27,12 +27,12 @@
 {% set use_opencv = "OFF" %}
 
 package:
-    name: libtomo
-    version: {{ version }}
+  name: libtomo
+  version: {{ version }}
 
 source:
   - url: https://github.com/tomopy/tomopy/archive/refs/tags/{{ version }}.tar.gz
-    sha256: bfdd382e32fac5649cfae8f7aafc70d0a79ff28dd363a834f65c27cf5f530267
+    sha256: b80fdbded4944657bcab48476cb3e2049d34197c8a4f8e6719e46ead4130821e
     patches:
       - shared-cuda-npp.patch
     # There is a special alpha release for only tomopy, so it does not make
@@ -43,17 +43,17 @@ source:
 
 build:
   number: {{ build }}
-  skip: True  # [win and (cuda_compiler_version != "None")]
+  skip: true  # [win and (cuda_compiler_version != "None")]
 
 app:
-    own_environment: True
+  own_environment: true
 
 outputs:
   - name: libtomo
     script: build-cxx.sh  # [unix]
-    script: bld-cxx.bat   # [win]
+    script: bld-cxx.bat  # [win]
     build:
-      string: "{{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ cuda_build_post }}"
+      string: {{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ cuda_build_post }}
       script_env:
         - USE_CUDA={{ use_cuda }}
         - USE_MKL={{ use_mkl }}
@@ -88,7 +88,7 @@ outputs:
 
   - name: tomopy
     script: build-python.sh  # [unix]
-    script: bld-python.bat   # [win]
+    script: bld-python.bat  # [win]
     build:
       noarch: python
       script_env:
@@ -133,26 +133,25 @@ outputs:
         - pytest test -vs
 
 about:
-    home: http://tomopy.readthedocs.io
-    license: BSD-3-Clause AND MIT
-    license_family: BSD
-    license_file:
-      - LICENSE.txt
-      - source/PTL/LICENSE
-    summary: 'Tomographic reconstruction in Python.'
-    description: >
-      TomoPy is an open-source Python package for tomographic data
-      processing and image reconstruction.
-    doc_url: http://tomopy.readthedocs.io
-    dev_url: https://github.com/tomopy/tomopy
+  home: http://tomopy.readthedocs.io
+  license: BSD-3-Clause AND MIT
+  license_family: BSD
+  license_file:
+    - LICENSE.txt
+    - source/PTL/LICENSE
+  summary: Tomographic reconstruction in Python.
+  description: >
+    TomoPy is an open-source Python package for tomographic data processing and image reconstruction.
+  doc_url: http://tomopy.readthedocs.io
+  dev_url: https://github.com/tomopy/tomopy
 
 extra:
-    recipe-maintainers:
-        - tomopy/admins
-        - dgursoy
-        - decarlof
-        - licode
-        - ravescovi
-        - tacaswell
-        - oleksandr-pavlyk
-        - carterbox
+  recipe-maintainers:
+    - tomopy/admins
+    - dgursoy
+    - decarlof
+    - licode
+    - ravescovi
+    - tacaswell
+    - oleksandr-pavlyk
+    - carterbox
