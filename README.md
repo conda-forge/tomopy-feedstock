@@ -20,7 +20,14 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>Travis</td>
+    <td>
+      <a href="https://app.travis-ci.com/conda-forge/tomopy-feedstock">
+        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/tomopy-feedstock/master.svg?label=Linux">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -34,6 +41,76 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
+              <td>linux_64_cuda_compiler_version10.2cxx_compiler_version7</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.2cxx_compiler_version7" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_cuda_compiler_version11.0cxx_compiler_version9</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.0cxx_compiler_version9" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_cuda_compiler_version11.1cxx_compiler_version10</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.1cxx_compiler_version10" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_cuda_compiler_version11.2cxx_compiler_version10</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.2cxx_compiler_version10" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_cuda_compiler_versionNonecxx_compiler_version10</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_versionNonecxx_compiler_version10" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_cuda_compiler_version11.2</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_cuda_compiler_version11.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_cuda_compiler_versionNone</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_cuda_compiler_versionNone" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_cuda_compiler_version11.2</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_cuda_compiler_version11.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_cuda_compiler_versionNone</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_cuda_compiler_versionNone" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=osx&configuration=osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>win_64_cuda_compiler_version10.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
@@ -41,10 +118,31 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>win_64_cuda_compiler_version11.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=win&configuration=win_64_cuda_compiler_version11.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_cuda_compiler_version11.1</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=win&configuration=win_64_cuda_compiler_version11.1" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>win_64_cuda_compiler_version11.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=win&configuration=win_64_cuda_compiler_version11.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_cuda_compiler_versionNone</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=win&configuration=win_64_cuda_compiler_versionNone" alt="variant">
                 </a>
               </td>
             </tr>
@@ -61,6 +159,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libtomo-green.svg)](https://anaconda.org/conda-forge/libtomo) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libtomo.svg)](https://anaconda.org/conda-forge/libtomo) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libtomo.svg)](https://anaconda.org/conda-forge/libtomo) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libtomo.svg)](https://anaconda.org/conda-forge/libtomo) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-tomopy-green.svg)](https://anaconda.org/conda-forge/tomopy) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tomopy.svg)](https://anaconda.org/conda-forge/tomopy) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tomopy.svg)](https://anaconda.org/conda-forge/tomopy) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tomopy.svg)](https://anaconda.org/conda-forge/tomopy) |
 
 Installing libtomo
 ==================
@@ -72,16 +171,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libtomo` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libtomo, tomopy` can be installed with `conda`:
 
 ```
-conda install libtomo
+conda install libtomo tomopy
 ```
 
 or with `mamba`:
 
 ```
-mamba install libtomo
+mamba install libtomo tomopy
 ```
 
 It is possible to list all of the versions of `libtomo` available on your platform with `conda`:

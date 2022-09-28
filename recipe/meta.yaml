@@ -43,8 +43,6 @@ source:
 
 build:
   number: {{ build }}
-  skip: true  # [cuda_compiler_version not in ("10.2", "11.2")]
-  skip: true  # [not win]
 
 app:
   own_environment: true
