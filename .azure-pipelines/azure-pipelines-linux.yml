@@ -8,31 +8,31 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_cuda_compiler_version10.2cxx_compiler_version7:
-        CONFIG: linux_64_cuda_compiler_version10.2cxx_compiler_version7
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-cuda:10.2
-        SHORT_CONFIG: linux_64_cuda_compiler_version10.2c_h0954adc41c
-      linux_64_cuda_compiler_version11.0cxx_compiler_version9:
-        CONFIG: linux_64_cuda_compiler_version11.0cxx_compiler_version9
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.0
-        SHORT_CONFIG: linux_64_cuda_compiler_version11.0c_h62dbc63df4
-      linux_64_cuda_compiler_version11.1cxx_compiler_version10:
-        CONFIG: linux_64_cuda_compiler_version11.1cxx_compiler_version10
+      linux_64_c_compiler_version10cuda_compiler_version11.1cxx_compiler_version10:
+        CONFIG: linux_64_c_compiler_version10cuda_compiler_version11.1cxx_compiler_version10
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.1
-        SHORT_CONFIG: linux_64_cuda_compiler_version11.1c_he2c669dc93
-      linux_64_cuda_compiler_version11.2cxx_compiler_version10:
-        CONFIG: linux_64_cuda_compiler_version11.2cxx_compiler_version10
+        SHORT_CONFIG: linux_64_c_compiler_version10cuda_c_ha0a3885354
+      linux_64_c_compiler_version10cuda_compiler_version11.2cxx_compiler_version10:
+        CONFIG: linux_64_c_compiler_version10cuda_compiler_version11.2cxx_compiler_version10
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.2
-        SHORT_CONFIG: linux_64_cuda_compiler_version11.2c_h0f722a43c2
-      linux_64_cuda_compiler_versionNonecxx_compiler_version11:
-        CONFIG: linux_64_cuda_compiler_versionNonecxx_compiler_version11
+        SHORT_CONFIG: linux_64_c_compiler_version10cuda_c_h409a79459c
+      linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11:
+        CONFIG: linux_64_c_compiler_version11cuda_compiler_versionNonecxx_compiler_version11
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-        SHORT_CONFIG: linux_64_cuda_compiler_versionNonec_h60d9c582f7
+        SHORT_CONFIG: linux_64_c_compiler_version11cuda_c_he631b1bde0
+      linux_64_c_compiler_version7cuda_compiler_version10.2cxx_compiler_version7:
+        CONFIG: linux_64_c_compiler_version7cuda_compiler_version10.2cxx_compiler_version7
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-cuda:10.2
+        SHORT_CONFIG: linux_64_c_compiler_version7cuda_co_h7972871b7a
+      linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9:
+        CONFIG: linux_64_c_compiler_version9cuda_compiler_version11.0cxx_compiler_version9
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cuda:11.0
+        SHORT_CONFIG: linux_64_c_compiler_version9cuda_co_hedd76d6674
   timeoutInMinutes: 360
 
   steps:
