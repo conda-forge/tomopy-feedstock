@@ -63,9 +63,12 @@ outputs:
         - nocuda_CmNhJ1DLKR  # [cuda_compiler_version == "None"]
     requirements:
       build:
+        - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
         - cmake >=3.17
+        - llvm-openmp  # [osx]
+        - libgomp      # [linux]
         - ninja
       host:
         - {{ libfft }}
