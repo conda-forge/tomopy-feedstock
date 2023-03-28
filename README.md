@@ -1,11 +1,11 @@
-About libtomo
-=============
+About libtomo-feedstock
+=======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tomopy-feedstock/blob/main/LICENSE.txt)
 
 Home: http://tomopy.readthedocs.io
 
 Package license: BSD-3-Clause AND MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tomopy-feedstock/blob/master/LICENSE.txt)
 
 Summary: Tomographic reconstruction in Python.
 
@@ -24,7 +24,7 @@ Current build status
     <td>Travis</td>
     <td>
       <a href="https://app.travis-ci.com/conda-forge/tomopy-feedstock">
-        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/tomopy-feedstock/master.svg?label=Linux">
+        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/tomopy-feedstock/main.svg?label=Linux">
       </a>
     </td>
   </tr>
@@ -34,8 +34,8 @@ Current build status
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main">
           </a>
         </summary>
         <table>
@@ -43,106 +43,106 @@ Current build status
           <tbody><tr>
               <td>linux_64_cuda_compiler_version10.2cxx_compiler_version7</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.2cxx_compiler_version7" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_version10.2cxx_compiler_version7" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_64_cuda_compiler_version11.0cxx_compiler_version9</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.0cxx_compiler_version9" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_version11.0cxx_compiler_version9" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_64_cuda_compiler_version11.1cxx_compiler_version10</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.1cxx_compiler_version10" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_version11.1cxx_compiler_version10" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_64_cuda_compiler_version11.2cxx_compiler_version10</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version11.2cxx_compiler_version10" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_version11.2cxx_compiler_version10" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_versionNonecxx_compiler_version10</td>
+              <td>linux_64_cuda_compiler_versionNonecxx_compiler_version11</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_versionNonecxx_compiler_version10" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_versionNonecxx_compiler_version11" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_cuda_compiler_version11.2</td>
+              <td>linux_aarch64_cuda_compiler_version11.2cxx_compiler_version10</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_cuda_compiler_version11.2" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_version11.2cxx_compiler_version10" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_cuda_compiler_versionNone</td>
+              <td>linux_aarch64_cuda_compiler_versionNonecxx_compiler_version11</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_cuda_compiler_versionNone" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_versionNonecxx_compiler_version11" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_cuda_compiler_version11.2</td>
+              <td>linux_ppc64le_cuda_compiler_version11.2cxx_compiler_version10</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_cuda_compiler_version11.2" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_cuda_compiler_version11.2cxx_compiler_version10" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_cuda_compiler_versionNone</td>
+              <td>linux_ppc64le_cuda_compiler_versionNonecxx_compiler_version11</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_cuda_compiler_versionNone" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_cuda_compiler_versionNonecxx_compiler_version11" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=osx&configuration=osx_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>win_64_cuda_compiler_version10.2</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=win&configuration=win_64_cuda_compiler_version10.2" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cuda_compiler_version10.2" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>win_64_cuda_compiler_version11.0</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=win&configuration=win_64_cuda_compiler_version11.0" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cuda_compiler_version11.0" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>win_64_cuda_compiler_version11.1</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=win&configuration=win_64_cuda_compiler_version11.1" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cuda_compiler_version11.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>win_64_cuda_compiler_version11.2</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=win&configuration=win_64_cuda_compiler_version11.2" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cuda_compiler_version11.2" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>win_64_cuda_compiler_versionNone</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=master&jobName=win&configuration=win_64_cuda_compiler_versionNone" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5465&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tomopy-feedstock?branchName=main&jobName=win&configuration=win%20win_64_cuda_compiler_versionNone" alt="variant">
                 </a>
               </td>
             </tr>

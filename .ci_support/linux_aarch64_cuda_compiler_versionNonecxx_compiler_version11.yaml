@@ -1,3 +1,7 @@
+BUILD:
+- aarch64-conda_cos7-linux-gnu
+cdt_arch:
+- aarch64
 cdt_name:
 - cos7
 channel_sources:
@@ -11,11 +15,11 @@ cuda_compiler_version:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '10'
+- '11'
 docker_image:
-- quay.io/condaforge/linux-anvil-ppc64le
+- quay.io/condaforge/linux-anvil-aarch64
 target_platform:
-- linux-ppc64le
+- linux-aarch64
 zip_keys:
 - - cxx_compiler_version
   - cuda_compiler_version
