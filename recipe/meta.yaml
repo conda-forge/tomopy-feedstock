@@ -18,7 +18,7 @@
   {% set libfft = "mkl-devel" %}
 {% else %}
   {% set use_mkl = "OFF" %}
-  {% set libfft = "nomkl" %}
+  {% set libfft = "fftw" %}
 {% endif %}
 
 # Set OpenCV related variables
