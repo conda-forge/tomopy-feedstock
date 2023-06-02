@@ -57,6 +57,7 @@ outputs:
         - USE_CUDA={{ use_cuda }}
         - USE_MKL={{ use_mkl }}
         - USE_OPENCV={{ use_opencv }}
+        - CUDAARCHS=all
       run_exports:
         - {{ pin_subpackage('libtomo') }}
         - libtomo =*=cuda*  # [cuda_compiler_version != "None"]
@@ -68,7 +69,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
-        - cmake >=3.17
+        - cmake >=3.23
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - ninja
