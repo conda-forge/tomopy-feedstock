@@ -5,6 +5,11 @@ echo MKL is $USE_MKL
 echo OPENCV is $USE_OPENCV
 echo CMAKE_ARGS is ${CMAKE_ARGS}
 
+# Conda-forge nvcc compiler flags environment variable doesn't match CMake
+# environment variable Redirect it so that the flags are added to nvcc calls
+# https://github.com/conda-forge/cuda-nvcc-feedstock/issues/18
+export CUDAFLAGS="${CUDAFLAGS} ${CUDA_CFLAGS}"
+
 mkdir build
 cd build
 
