@@ -12,18 +12,6 @@ jobs:
         CONFIG: win_64_cuda_compilerNonecuda_compiler_versionNone
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: win_64_cuda_compilerNonecuda_compil_hdd26f212be
-      win_64_cuda_compilernvcccuda_compiler_version10.2:
-        CONFIG: win_64_cuda_compilernvcccuda_compiler_version10.2
-        UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: win_64_cuda_compilernvcccuda_compil_h81a63206ec
-      win_64_cuda_compilernvcccuda_compiler_version11.0:
-        CONFIG: win_64_cuda_compilernvcccuda_compiler_version11.0
-        UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: win_64_cuda_compilernvcccuda_compil_he682213d71
-      win_64_cuda_compilernvcccuda_compiler_version11.1:
-        CONFIG: win_64_cuda_compilernvcccuda_compiler_version11.1
-        UPLOAD_PACKAGES: 'True'
-        SHORT_CONFIG: win_64_cuda_compilernvcccuda_compil_hcb89a36015
       win_64_cuda_compilernvcccuda_compiler_version11.2:
         CONFIG: win_64_cuda_compilernvcccuda_compiler_version11.2
         UPLOAD_PACKAGES: 'True'
@@ -77,7 +65,7 @@ jobs:
         if EXIST LICENSE.txt (
           copy LICENSE.txt "recipe\\recipe-scripts-license.txt"
         )
-        conda.exe mambabuild "recipe" -m .ci_support\%CONFIG%.yaml --suppress-variables
+        conda.exe mambabuild "recipe" -m .ci_support\%CONFIG%.yaml --suppress-variables %EXTRA_CB_OPTIONS%
       displayName: Build recipe
       env:
         PYTHONUNBUFFERED: 1
