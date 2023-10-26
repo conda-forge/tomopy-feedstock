@@ -36,9 +36,10 @@ source:
     patches:
       - shared-cuda-npp.patch
     # There is a special alpha release for only tomopy, so it does not make
-    # sense to dynamically link to PTL from a shared library
-  - url: https://github.com/jrmadsen/PTL/archive/refs/tags/tomopy-v1.0.tar.gz
-    sha256: 2fa6b5f8e9e63aa0e9c4e933eadc216e32b13cc6388a15bc3f8fb369757417f2
+    # sense to dynamically link to PTL from a shared library. This TomoPy fork of PTL contains
+    # platform compatiblity patches for RISC which upstream has not accepted.
+  - url: https://github.com/tomopy/PTL/archive/79dc8785c3ef39357669250ffa46e4329c67a084.tar.gz
+    sha256: a1aa5b801ece5528ee50e44a760805854231c564aea05e41729e32152e68d3b2
     folder: source/PTL
 
 build:
