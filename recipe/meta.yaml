@@ -13,7 +13,7 @@
 {% endif %}
 
 # Set FFT related variables
-{% if x86_64 and (win or osx or linux) %}
+{% if x86_64 %}
   {% set use_mkl = "ON" %}
   {% set libfft = "mkl-devel" %}
 {% else %}
