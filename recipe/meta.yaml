@@ -66,8 +66,6 @@ outputs:
         - nocuda_CmNhJ1DLKR  # [cuda_compiler_version == "None"]
     requirements:
       build:
-        - python                                 # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
