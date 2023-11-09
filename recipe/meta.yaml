@@ -100,6 +100,8 @@ outputs:
     script: build-python.sh  # [unix]
     script: bld-python.bat  # [win]
     build:
+    # Only need to build a noarch package on one platform
+      skip: true  # [not linux64]
       noarch: python
       script_env:
         - SETUPTOOLS_SCM_PRETEND_VERSION={{ PKG_VERSION }}
