@@ -1,5 +1,5 @@
-{% set version = "1.14.2" %}
-{% set build = 1 %}
+{% set version = "1.14.3" %}
+{% set build = 0 %}
 
 # Set CUDA related variables
 {% if cuda_compiler_version is not defined or cuda_compiler_version == "None" %}
@@ -32,14 +32,14 @@ package:
 
 source:
   - url: https://github.com/tomopy/tomopy/releases/download/{{ version }}/tomopy-{{ version }}.zip
-    sha256: 60759eaff53964d814cef66fb296127936537fdd7f46c81a979119de0d35f327
+    sha256: bb7ba319e1db19f5737a690b01cdf8db144cc914459d98e6e2ec90f5aa60bb82
     patches:
       - shared-cuda-npp.patch
     # There is a special alpha release for only tomopy, so it does not make
     # sense to dynamically link to PTL from a shared library. This TomoPy fork of PTL contains
     # platform compatiblity patches for RISC which upstream has not accepted.
-  - url: https://github.com/tomopy/PTL/archive/79dc8785c3ef39357669250ffa46e4329c67a084.tar.gz
-    sha256: a1aa5b801ece5528ee50e44a760805854231c564aea05e41729e32152e68d3b2
+  - url: https://github.com/tomopy/PTL/archive/7cc409eeef9de1e7ac3ec01c8b76f640deec36bd.tar.gz
+    sha256: 99a9653c98f18abc09a1620fb977f565112a167718f4896ab8faaf0c92ccf110
     folder: source/PTL
 
 build:
