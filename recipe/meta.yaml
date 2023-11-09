@@ -39,7 +39,7 @@ source:
     # sense to dynamically link to PTL from a shared library. This TomoPy fork of PTL contains
     # platform compatiblity patches for RISC which upstream has not accepted.
   - url: https://github.com/tomopy/PTL/archive/7cc409eeef9de1e7ac3ec01c8b76f640deec36bd.tar.gz
-    sha256: 99a9653c98f18abc09a1620fb977f565112a167718f4896ab8faaf0c92ccf110
+    sha256: 6dc30c9db1fb55e1009f76cafde7a5e0b9de0f14933336437748dfa25d8b3978
     folder: source/PTL
 
 build:
