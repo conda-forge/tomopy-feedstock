@@ -1,4 +1,4 @@
-{% set version = "1.14.2" %}
+{% set version = "1.14.3" %}
 {% set build = 0 %}
 
 # Set CUDA related variables
@@ -32,7 +32,7 @@ package:
 
 source:
   - url: https://github.com/tomopy/tomopy/releases/download/{{ version }}/tomopy-{{ version }}.zip
-    sha256: 60759eaff53964d814cef66fb296127936537fdd7f46c81a979119de0d35f327
+    sha256: bb7ba319e1db19f5737a690b01cdf8db144cc914459d98e6e2ec90f5aa60bb82
     patches:
       - shared-cuda-npp.patch
     # There is a special alpha release for only tomopy, so it does not make
