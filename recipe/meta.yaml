@@ -1,4 +1,4 @@
-{% set version = "1.14.2" %}
+{% set version = "1.14.4" %}
 {% set build = 0 %}
 
 # Set CUDA related variables
@@ -13,7 +13,7 @@
 {% endif %}
 
 # Set FFT related variables
-{% if win or osx or linux32 or linux64 %}
+{% if x86_64 %}
   {% set use_mkl = "ON" %}
   {% set libfft = "mkl-devel" %}
 {% else %}
@@ -32,13 +32,15 @@ package:
 
 source:
   - url: https://github.com/tomopy/tomopy/releases/download/{{ version }}/tomopy-{{ version }}.zip
-    sha256: 60759eaff53964d814cef66fb296127936537fdd7f46c81a979119de0d35f327
+    sha256: 3485471defaec4f458a48db45523c87eff13c2a7eb6dec140f606faf13f8fe40
     patches:
       - shared-cuda-npp.patch
-    # There is a special alpha release for only tomopy, so it does not make
-    # sense to dynamically link to PTL from a shared library
-  - url: https://github.com/jrmadsen/PTL/archive/refs/tags/tomopy-v1.0.tar.gz
-    sha256: 2fa6b5f8e9e63aa0e9c4e933eadc216e32b13cc6388a15bc3f8fb369757417f2
+    # There is a special fork for tomopy, so it does not make sense to
+    # dynamically link to PTL from a shared library. This TomoPy fork of PTL
+    # contains platform compatiblity patches for RISC and Apple Silicon which
+    # upstream has not accepted.
+  - url: https://github.com/tomopy/PTL/archive/7cc409eeef9de1e7ac3ec01c8b76f640deec36bd.tar.gz
+    sha256: 6dc30c9db1fb55e1009f76cafde7a5e0b9de0f14933336437748dfa25d8b3978
     folder: source/PTL
 
 build:
@@ -73,6 +75,8 @@ outputs:
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - ninja
+        # Need pkgconfig to find fftw instead of mkl on alt archs
+        - pkgconfig  # [not x86]
       host:
 {% if cuda_major == 12 %}
         - libnpp-dev
@@ -96,6 +100,8 @@ outputs:
     script: build-python.sh  # [unix]
     script: bld-python.bat  # [win]
     build:
+    # Only need to build a noarch package on one platform
+      skip: true  # [not linux64]
       noarch: python
       script_env:
         - SETUPTOOLS_SCM_PRETEND_VERSION={{ PKG_VERSION }}
