@@ -120,7 +120,7 @@ outputs:
         - pywavelets =1.*
         - python >=3.6,<4
         - scikit-image >=0.17,<1
-        - scipy =1.*
+        - scipy =1.*,<1.14
         - tifffile >=2019
       run_constrained:
         - astra-toolbox >1.8,<3
