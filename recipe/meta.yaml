@@ -1,5 +1,5 @@
-{% set version = "1.14.4" %}
-{% set build = 1 %}
+{% set version = "1.15.0" %}
+{% set build = 0 %}
 
 # Set CUDA related variables
 {% if cuda_compiler_version is not defined or cuda_compiler_version == "None" %}
@@ -32,7 +32,7 @@ package:
 
 source:
   - url: https://github.com/tomopy/tomopy/releases/download/{{ version }}/tomopy-{{ version }}.zip
-    sha256: 3485471defaec4f458a48db45523c87eff13c2a7eb6dec140f606faf13f8fe40
+    sha256: 5b354402259a88924f4cafac871c99219f1822c00bbfa0ca687aac208d91a2c4
     patches:
       - shared-cuda-npp.patch
     # There is a special fork for tomopy, so it does not make sense to
@@ -120,7 +120,7 @@ outputs:
         - pywavelets =1.*
         - python >=3.6,<4
         - scikit-image >=0.17,<1
-        - scipy =1.*
+        - scipy =1.*,<1.14
         - tifffile >=2019
       run_constrained:
         - astra-toolbox >1.8,<3
