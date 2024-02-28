@@ -1,5 +1,5 @@
 {% set version = "1.15.0" %}
-{% set build = 0 %}
+{% set build = 1 %}
 
 # Set CUDA related variables
 {% if cuda_compiler_version is not defined or cuda_compiler_version == "None" %}
@@ -115,12 +115,12 @@ outputs:
       run:
         - {{ pin_subpackage('libtomo') }}
         - importlib_metadata
-        - numexpr =2.*
+        - numexpr >=2.0,<3
         - numpy >1.12,!=1.22.4
-        - pywavelets =1.*
+        - pywavelets >=1.0,<2
         - python >=3.6,<4
         - scikit-image >=0.17,<1
-        - scipy =1.*,<1.14
+        - scipy >=1.0,<1.14
         - tifffile >=2019
       run_constrained:
         - astra-toolbox >1.8,<3
