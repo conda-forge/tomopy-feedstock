@@ -1,5 +1,7 @@
 c_compiler:
 - vs2019
+c_stdlib:
+- vs
 channel_sources:
 - conda-forge
 channel_targets:
@@ -10,6 +12,10 @@ cuda_compiler_version:
 - '11.8'
 cxx_compiler:
 - vs2019
+fftw:
+- '3'
+mkl:
+- '2023'
 target_platform:
 - win-64
 zip_keys:
