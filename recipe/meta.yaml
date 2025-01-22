@@ -109,7 +109,7 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.6,<4
+        - python {{ python_min }}
         - setuptools >=45
         - setuptools_scm >=6.2
         - setuptools_scm_git_archive
@@ -119,7 +119,7 @@ outputs:
         - numexpr >=2.0,<3
         - numpy >1.12,!=1.22.4
         - pywavelets >=1.0,<2
-        - python >=3.6,<4
+        - python >={{ python_min }},<4
         - scikit-image >=0.17,<1
         - scipy >=1.0,<1.14
         - tifffile >=2019
@@ -129,6 +129,7 @@ outputs:
       requires:
         - pip
         - pytest
+        - python {{ python_min }}
       imports:
         - tomopy
         - tomopy.misc
