@@ -15,7 +15,7 @@ cxx_compiler:
 fftw:
 - '3'
 mkl:
-- '2023'
+- '2024'
 target_platform:
 - win-64
 zip_keys:
