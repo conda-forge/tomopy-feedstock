@@ -59,7 +59,6 @@ outputs:
         - USE_CUDA={{ use_cuda }}
         - USE_MKL={{ use_mkl }}
         - USE_OPENCV={{ use_opencv }}
-        - CUDAARCHS=all
       run_exports:
         - {{ pin_subpackage('libtomo') }}
         - libtomo =*=cuda*  # [cuda_compiler_version != "None"]
