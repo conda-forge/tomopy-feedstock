@@ -117,12 +117,12 @@ outputs:
         - {{ pin_subpackage('libtomo') }}
         - importlib-metadata
         - numexpr >=2.0,<3
-        - numpy >1.12,!=1.22.4
+        - numpy >=2.0,<3
         - pywavelets >=1.0,<2
         - python >={{ python_min }},<4
-        - scikit-image >=0.17,<1
-        - scipy >=1.0,<1.14
-        - tifffile >=2019
+        - scikit-image >=0.22,<0.26
+        - scipy >=1.12,<2
+        - tifffile >=2019,<2025.2.18
       run_constrained:
         - astra-toolbox >1.8,<3
     test:
