@@ -8,26 +8,26 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_cuda_compiler_version12.6:
-        CONFIG: linux_64_cuda_compiler_version12.6
+      linux_64_cuda_compiler_version12.9:
+        CONFIG: linux_64_cuda_compiler_version12.9
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_64_cuda_compiler_version12.6
+        SHORT_CONFIG: linux_64_cuda_compiler_version12.9
       linux_64_cuda_compiler_versionNone:
         CONFIG: linux_64_cuda_compiler_versionNone
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
         SHORT_CONFIG: linux_64_cuda_compiler_versionNone
-      linux_aarch64_c_compiler_version13cuda_compiler_version12.6cxx_compiler_version13:
-        CONFIG: linux_aarch64_c_compiler_version13cuda_compiler_version12.6cxx_compiler_version13
+      linux_aarch64_cuda_compiler_version12.9:
+        CONFIG: linux_aarch64_cuda_compiler_version12.9
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_aarch64_c_compiler_version13cuda_c_h13545bd3
-      linux_aarch64_c_compiler_version14cuda_compiler_versionNonecxx_compiler_version14:
-        CONFIG: linux_aarch64_c_compiler_version14cuda_compiler_versionNonecxx_compiler_version14
+        SHORT_CONFIG: linux_aarch64_cuda_compiler_version12.9
+      linux_aarch64_cuda_compiler_versionNone:
+        CONFIG: linux_aarch64_cuda_compiler_versionNone
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_aarch64_c_compiler_version14cuda_c_hcabe82bf
+        SHORT_CONFIG: linux_aarch64_cuda_compiler_versionNone
       linux_ppc64le_:
         CONFIG: linux_ppc64le_
         UPLOAD_PACKAGES: 'True'
