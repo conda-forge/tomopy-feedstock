@@ -1,5 +1,5 @@
-{% set version = "1.15.2" %}
-{% set build = 1 %}
+{% set version = "1.15.3" %}
+{% set build = 0 %}
 
 # Set CUDA related variables
 {% if cuda_compiler_version is not defined or cuda_compiler_version == "None" %}
@@ -32,7 +32,7 @@ package:
 
 source:
   - url: https://github.com/tomopy/tomopy/releases/download/{{ version }}/tomopy-{{ version }}.zip
-    sha256: 4a2f85521fef47b12aad9b8e6d5f2a32dbec4b74ee3dd3bb3ac4a38e9522523f
+    sha256: 32ab230d2027ba1812cdbaeb684b40ed63d623adeb962bd4da8ccae03cad0621
     patches:
       - shared-cuda-npp.patch
     # There is a special fork for tomopy, so it does not make sense to
