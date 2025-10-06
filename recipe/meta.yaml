@@ -12,20 +12,6 @@
   {% set cuda_build_post = build + 100 %}
 {% endif %}
 
-# Set FFT related variables
-{% if x86_64 %}
-  {% set use_mkl = "ON" %}
-  {% set libfft = "mkl-devel" %}
-{% else %}
-  {% set use_mkl = "OFF" %}
-  {% set libfft = "fftw" %}
-{% endif %}
-
-# Set OpenCV related variables
-{% set use_opencv = "OFF" %}
-
-{% set cuda_major = environ.get("cuda_compiler_version", "11.2").split(".")[0]|int %}
-
 package:
   name: libtomo
   version: {{ version }}
@@ -57,8 +43,9 @@ outputs:
       string: {{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ cuda_build_post }}
       script_env:
         - USE_CUDA={{ use_cuda }}
-        - USE_MKL={{ use_mkl }}
-        - USE_OPENCV={{ use_opencv }}
+        - USE_MKL=ON   # [x86_64]
+        - USE_MKL=OFF  # [not x86_64]
+        - USE_OPENCV=OFF
       run_exports:
         - {{ pin_subpackage('libtomo') }}
         - libtomo =*=cuda*  # [cuda_compiler_version != "None"]
@@ -78,10 +65,9 @@ outputs:
         # Need pkgconfig to find fftw instead of mkl on alt archs
         - pkgconfig  # [not x86]
       host:
-{% if cuda_major == 12 %}
-        - libnpp-dev
-{% endif %}
-        - {{ libfft }}
+        - libnpp-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - mkl-devel  # [x86_64]
+        - fftw       # [not x86_64]
       run:
         - __cuda  # [cuda_compiler_version != "None"]
       run_constrained:
