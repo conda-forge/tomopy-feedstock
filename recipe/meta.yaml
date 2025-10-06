@@ -69,8 +69,7 @@ outputs:
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - ninja
-        # Need pkgconfig to find fftw instead of mkl on alt archs
-        - pkgconfig  # [not x86]
+        - pkgconfig  # [(fft_impl or "").startswith("fftw")]
       host:
         - libnpp-dev  # [(cuda_compiler_version or "").startswith("12")]
         - {{ fft_impl }}
