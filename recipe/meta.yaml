@@ -50,8 +50,8 @@ outputs:
       string: {{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ cuda_build_post }}
       script_env:
         - USE_CUDA={{ use_cuda }}
-        - USE_MKL=ON   # [(fft_impl or "").startswith("fftw")]
-        - USE_MKL=OFF  # [(fft_impl or "").startswith("mkl")]
+        - USE_MKL=OFF  # [(fft_impl or "").startswith("fftw")]
+        - USE_MKL=ON   # [(fft_impl or "").startswith("mkl")]
         - USE_OPENCV=OFF
       run_exports:
         - {{ pin_subpackage('libtomo') }}
