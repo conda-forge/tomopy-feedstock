@@ -12,11 +12,9 @@ cuda_compiler_version:
 - '12.9'
 cxx_compiler:
 - vs2022
-fftw:
-- '3'
-mkl:
+mkl_devel:
 - '2024'
 python_min:
-- '3.11'
+- '3.10'
 target_platform:
 - win-64
