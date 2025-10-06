@@ -1,5 +1,5 @@
-{% set version = "1.15.2" %}
-{% set build = 1 %}
+{% set version = "1.15.3" %}
+{% set build = 0 %}
 
 # Set CUDA related variables
 {% if cuda_compiler_version is not defined or cuda_compiler_version == "None" %}
@@ -12,19 +12,12 @@
   {% set cuda_build_post = build + 100 %}
 {% endif %}
 
-# Set FFT related variables
-{% if x86_64 %}
-  {% set use_mkl = "ON" %}
-  {% set libfft = "mkl-devel" %}
+{% set fft_impl = fft_impl | default('fftw') %}
+{% if fft_impl.startswith("mkl") %}
+  {% set cuda_build_post = cuda_build_post + 10 %}
 {% else %}
-  {% set use_mkl = "OFF" %}
-  {% set libfft = "fftw" %}
+  {% set cuda_build_post = cuda_build_post %}
 {% endif %}
-
-# Set OpenCV related variables
-{% set use_opencv = "OFF" %}
-
-{% set cuda_major = environ.get("cuda_compiler_version", "11.2").split(".")[0]|int %}
 
 package:
   name: libtomo
@@ -32,7 +25,7 @@ package:
 
 source:
   - url: https://github.com/tomopy/tomopy/releases/download/{{ version }}/tomopy-{{ version }}.zip
-    sha256: 4a2f85521fef47b12aad9b8e6d5f2a32dbec4b74ee3dd3bb3ac4a38e9522523f
+    sha256: 32ab230d2027ba1812cdbaeb684b40ed63d623adeb962bd4da8ccae03cad0621
     patches:
       - shared-cuda-npp.patch
     # There is a special fork for tomopy, so it does not make sense to
@@ -57,9 +50,9 @@ outputs:
       string: {{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ cuda_build_post }}
       script_env:
         - USE_CUDA={{ use_cuda }}
-        - USE_MKL={{ use_mkl }}
-        - USE_OPENCV={{ use_opencv }}
-        - CUDAARCHS=all
+        - USE_MKL=OFF  # [(fft_impl or "").startswith("fftw")]
+        - USE_MKL=ON   # [(fft_impl or "").startswith("mkl")]
+        - USE_OPENCV=OFF
       run_exports:
         - {{ pin_subpackage('libtomo') }}
         - libtomo =*=cuda*  # [cuda_compiler_version != "None"]
@@ -76,13 +69,11 @@ outputs:
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - ninja
-        # Need pkgconfig to find fftw instead of mkl on alt archs
-        - pkgconfig  # [not x86]
+        - pkgconfig  # [(fft_impl or "").startswith("fftw")]
       host:
-{% if cuda_major == 12 %}
-        - libnpp-dev
-{% endif %}
-        - {{ libfft }}
+        - libnpp-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - {{ fft_impl }}
+        - mkl-devel  # [(fft_impl or "").startswith("mkl")]
       run:
         - __cuda  # [cuda_compiler_version != "None"]
       run_constrained:
@@ -109,7 +100,7 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.6,<4
+        - python {{ python_min }}
         - setuptools >=45
         - setuptools_scm >=6.2
         - setuptools_scm_git_archive
@@ -117,18 +108,19 @@ outputs:
         - {{ pin_subpackage('libtomo') }}
         - importlib-metadata
         - numexpr >=2.0,<3
-        - numpy >1.12,!=1.22.4
+        - numpy >=2.0,<3
         - pywavelets >=1.0,<2
-        - python >=3.6,<4
-        - scikit-image >=0.17,<1
-        - scipy >=1.0,<1.14
-        - tifffile >=2019
+        - python >={{ python_min }},<4
+        - scikit-image >=0.22,<0.26
+        - scipy >=1.12,<2
+        - tifffile >=2019,<2025.2.18
       run_constrained:
         - astra-toolbox >1.8,<3
     test:
       requires:
         - pip
         - pytest
+        - python {{ python_min }}
       imports:
         - tomopy
         - tomopy.misc
