@@ -25,7 +25,7 @@ fftw:
 mkl:
 - '2024'
 python_min:
-- '3.10'
+- '3.11'
 target_platform:
 - linux-64
 zip_keys:

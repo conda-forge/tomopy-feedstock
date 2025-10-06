@@ -31,7 +31,7 @@ macos_machine:
 mkl:
 - '2023'
 python_min:
-- '3.10'
+- '3.11'
 target_platform:
 - osx-arm64
 zip_keys:
