@@ -12,6 +12,13 @@
   {% set cuda_build_post = build + 100 %}
 {% endif %}
 
+{% set fft_impl = fft_impl | default('fftw') %}
+{% if fft_impl.startswith("mkl") %}
+  {% set cuda_build_post = cuda_build_post + 10 %}
+{% else %}
+  {% set cuda_build_post = cuda_build_post %}
+{% endif %}
+
 package:
   name: libtomo
   version: {{ version }}
@@ -43,8 +50,8 @@ outputs:
       string: {{ cuda_build_prefix }}h{{ PKG_HASH }}_{{ cuda_build_post }}
       script_env:
         - USE_CUDA={{ use_cuda }}
-        - USE_MKL=ON   # [x86_64]
-        - USE_MKL=OFF  # [not x86_64]
+        - USE_MKL=ON   # [(fft_impl or "").startswith("fftw")]
+        - USE_MKL=OFF  # [(fft_impl or "").startswith("mkl")]
         - USE_OPENCV=OFF
       run_exports:
         - {{ pin_subpackage('libtomo') }}
@@ -66,8 +73,8 @@ outputs:
         - pkgconfig  # [not x86]
       host:
         - libnpp-dev  # [(cuda_compiler_version or "").startswith("12")]
-        - mkl-devel  # [x86_64]
-        - fftw       # [not x86_64]
+        - {{ fft_impl }}
+        - mkl-devel  # [(fft_impl or "").startswith("mkl")]
       run:
         - __cuda  # [cuda_compiler_version != "None"]
       run_constrained:
