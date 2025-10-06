@@ -12,6 +12,12 @@ cuda_compiler_version:
 - '12.9'
 cxx_compiler:
 - vs2022
+fft_impl:
+- mkl
+fftw:
+- '3'
+mkl:
+- '2024'
 mkl_devel:
 - '2024'
 python_min:
