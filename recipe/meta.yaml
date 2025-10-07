@@ -1,5 +1,5 @@
 {% set version = "1.15.3" %}
-{% set build = 0 %}
+{% set build = 1 %}
 
 # Set CUDA related variables
 {% if cuda_compiler_version is not defined or cuda_compiler_version == "None" %}
@@ -71,7 +71,7 @@ outputs:
         - ninja
         - pkgconfig  # [(fft_impl or "").startswith("fftw")]
       host:
-        - libnpp-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libnpp-dev  # [cuda_compiler_version != "None"]
         - {{ fft_impl }}
         - mkl-devel  # [(fft_impl or "").startswith("mkl")]
       run:
