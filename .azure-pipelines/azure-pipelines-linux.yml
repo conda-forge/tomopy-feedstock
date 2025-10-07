@@ -38,21 +38,21 @@ jobs:
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
         SHORT_CONFIG: linux_64_cuda_compiler_versionNonefft_implmkl
-      linux_aarch64_c_compiler_version13c_stdlib_version2.17cuda_compiler_version12.9cxx_compiler_version13:
-        CONFIG: linux_aarch64_c_compiler_version13c_stdlib_version2.17cuda_compiler_version12.9cxx_compiler_version13
+      linux_aarch64_c_stdlib_version2.17cuda_compiler_version12.9:
+        CONFIG: linux_aarch64_c_stdlib_version2.17cuda_compiler_version12.9
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_aarch64_c_compiler_version13c_stdl_h6776cf13
-      linux_aarch64_c_compiler_version13c_stdlib_version2.17cuda_compiler_versionNonecxx_compiler_version13:
-        CONFIG: linux_aarch64_c_compiler_version13c_stdlib_version2.17cuda_compiler_versionNonecxx_compiler_version13
+        SHORT_CONFIG: linux_aarch64_c_stdlib_version2.17cuda_c_h4e17e106
+      linux_aarch64_c_stdlib_version2.17cuda_compiler_versionNone:
+        CONFIG: linux_aarch64_c_stdlib_version2.17cuda_compiler_versionNone
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_aarch64_c_compiler_version13c_stdl_h43cb38cc
-      linux_aarch64_c_compiler_version14c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version14:
-        CONFIG: linux_aarch64_c_compiler_version14c_stdlib_version2.28cuda_compiler_version13.0cxx_compiler_version14
+        SHORT_CONFIG: linux_aarch64_c_stdlib_version2.17cuda_c_h5fc4c0be
+      linux_aarch64_c_stdlib_version2.28cuda_compiler_version13.0:
+        CONFIG: linux_aarch64_c_stdlib_version2.28cuda_compiler_version13.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-        SHORT_CONFIG: linux_aarch64_c_compiler_version14c_stdl_h5b6d128e
+        SHORT_CONFIG: linux_aarch64_c_stdlib_version2.28cuda_c_h696c8e49
       linux_ppc64le_:
         CONFIG: linux_ppc64le_
         UPLOAD_PACKAGES: 'True'

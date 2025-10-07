@@ -1,6 +1,7 @@
 migrator_ts: 1755016036
 __migrator:
   operation: key_add
+  use_local: true
   migration_number:
     1
   build_number:
@@ -26,7 +27,7 @@ __migrator:
     - cuda129
   commit_message: |
     Upgrade to CUDA 13.0
-    
+
     CUDA 13.0 requires architecture `sm_75` or higher, and renamed `sm_101` to
     `sm_110`. To build for these, maintainers will need to modify their existing list of
     specified architectures (e.g. `CMAKE_CUDA_ARCHITECTURES`, `TORCH_CUDA_ARCH_LIST`, etc.)
@@ -53,10 +54,10 @@ c_stdlib_version:              # [(linux and (x86_64 or aarch64)) and os.environ
   - 2.28                       # [(linux and (x86_64 or aarch64)) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
 
 c_compiler_version:            # [(linux and (x86_64 or aarch64)) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
-  - 14                         # [(linux and (x86_64 or aarch64)) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
+  - 13                         # [(linux and (x86_64 or aarch64)) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
 
 cxx_compiler_version:          # [(linux and (x86_64 or aarch64)) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
-  - 14                         # [(linux and (x86_64 or aarch64)) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
+  - 13                         # [(linux and (x86_64 or aarch64)) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
 
 fortran_compiler_version:      # [(linux and (x86_64 or aarch64)) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
-  - 14                         # [(linux and (x86_64 or aarch64)) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
+  - 13                         # [(linux and (x86_64 or aarch64)) and os.environ.get("CF_CUDA_ENABLED", "False") == "True"]
