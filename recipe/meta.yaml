@@ -71,7 +71,7 @@ outputs:
         - ninja
         - pkgconfig  # [(fft_impl or "").startswith("fftw")]
       host:
-        - libnpp-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libnpp-dev  # [cuda_compiler_version != "None"]
         - {{ fft_impl }}
         - mkl-devel  # [(fft_impl or "").startswith("mkl")]
       run:
