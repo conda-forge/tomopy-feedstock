@@ -17,9 +17,9 @@ fft_impl:
 fftw:
 - '3'
 mkl:
-- '2024'
+- '2025'
 mkl_devel:
-- '2024'
+- '2025'
 python_min:
 - '3.10'
 target_platform:
